@@ -28,7 +28,7 @@ public class PlayerMoves : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbodyComponent.velocity = new Vector3(horizontalInput, rigidbodyComponent.velocity.y, verticalInput);
+        rigidbodyComponent.velocity = new Vector3(horizontalInput * 10f, rigidbodyComponent.velocity.y, verticalInput * 10f);
 
         if (Physics.OverlapSphere(groundCheckTansform.position, 0.1f).Length == 1)
         {
