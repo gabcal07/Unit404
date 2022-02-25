@@ -16,6 +16,7 @@ public class playerControllerScript : MonoBehaviour
     {
         HandleMovementInput();
         HandleRotationInput();
+        HandleShootInput();
     }
 
     void HandleMovementInput()
@@ -35,6 +36,15 @@ public class playerControllerScript : MonoBehaviour
         if (Physics.Raycast(_ray, out _hit))
         {
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
+        }
+    }
+
+    void HandleShootInput()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            //shoot
+            PlayerGun.Instance.Shoot();
         }
     }
 }
