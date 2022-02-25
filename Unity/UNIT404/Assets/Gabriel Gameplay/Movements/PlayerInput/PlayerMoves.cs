@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerMoves : MonoBehaviour
 {
     public bool jumpPressed;
-    public float speed = 0.75f;
+    public float speed = 8f;
     private float horizontalInput;
     private float verticalInput;
     private Rigidbody rigidbodyComponent;
     [SerializeField] private Transform groundCheckTansform = null;
+    [SerializeField] private float movementSpeed;
 
     private void Start()
     {
@@ -21,14 +22,16 @@ public class PlayerMoves : MonoBehaviour
         {
             jumpPressed = true;
         }
-       
+
+        //HandleMovementInput(); 
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
     {
-        rigidbodyComponent.velocity = new Vector3(horizontalInput * 10f, rigidbodyComponent.velocity.y, verticalInput * 10f);
+        rigidbodyComponent.velocity = new Vector3(horizontalInput * speed, rigidbodyComponent.velocity.y, verticalInput * speed);
 
         if (Physics.OverlapSphere(groundCheckTansform.position, 0.1f).Length == 1)
         {
@@ -36,9 +39,17 @@ public class PlayerMoves : MonoBehaviour
         }
         if (jumpPressed)
         {
-            rigidbodyComponent.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
+            rigidbodyComponent.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
             jumpPressed = false;
-        }      
+        }
     }
 
+    private void HandleMovementInput()
+    {
+        float _horizontal = Input.GetAxis("Horizontal");
+        float _vertical = Input.GetAxis("Vertical");
+
+        Vector3 _movement = new Vector3(_horizontal, rigidbodyComponent.velocity.y, _vertical);
+        transform.Translate(_movement * movementSpeed * Time.deltaTime, Space.World);
+    }
 }
