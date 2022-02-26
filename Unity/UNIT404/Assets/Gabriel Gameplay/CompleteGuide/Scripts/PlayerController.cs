@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveInput;
     private Vector3 moveVelocity;
     private Camera mainCamera;
+    public gunController theGun;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +33,20 @@ public class PlayerController : MonoBehaviour
             Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
             transform.LookAt(new Vector3 (pointToLook.x, transform.position.y, pointToLook.z));
         }
+
+        HandleShootInput();
     }
 
     private void FixedUpdate()
     {
         myRigidBody.velocity = moveVelocity;
+    }
+
+    void HandleShootInput()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            gunController.Instance.Shoot();
+        }
     }
 }
