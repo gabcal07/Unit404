@@ -6,7 +6,7 @@ public class bulletController : MonoBehaviour
 {
     private Vector3 firingPoint;
     [SerializeField] float projectileSpeed;
-
+    public int damageToGive;
     [SerializeField] float maxProjectileDistance;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,15 @@ public class bulletController : MonoBehaviour
         else
         {
             transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag is "enemy")
+        {
+            collision.gameObject.GetComponent<enemyHealthManager>().HurtEnemy(damageToGive);
+            Destroy(gameObject);
         }
     }
 }
