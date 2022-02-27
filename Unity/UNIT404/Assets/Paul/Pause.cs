@@ -43,14 +43,12 @@ public class Pause : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // "scene du menu" entre guillemets
+        SceneManager.LoadScene("Main Menu"); // "scene du menu" entre guillemets
         Time.timeScale = 1f;
     }
-    public void QuitGame()
+    public void Settings()
     {
-        Application.Quit();
-
-        Debug.Log("Quit");
+        
     }
     
 }
