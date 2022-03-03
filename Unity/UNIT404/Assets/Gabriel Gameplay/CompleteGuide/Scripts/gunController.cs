@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class gunController : MonoBehaviour
 {
@@ -9,10 +10,17 @@ public class gunController : MonoBehaviour
     [SerializeField] float firingSpeed;
     public static gunController Instance;
     private float lastTimeShot = 0f;
+    PhotonView view;
+   
     // Start is called before the first frame update
     void Awake()
     {
-        Instance = GetComponent<gunController>();
+        view = GetComponent<PhotonView>();
+        if (view.IsMine)
+        {
+            Instance = GetComponent<gunController>();
+        }
+     
     }
 
     // Update is called once per frame
@@ -22,7 +30,7 @@ public class gunController : MonoBehaviour
         if (lastTimeShot + firingSpeed <= Time.time)
         {
             lastTimeShot = Time.time;
-            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            PhotonNetwork.Instantiate(projectilePrefab.name, firingPoint.position, firingPoint.rotation);
         }
     }
 }

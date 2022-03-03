@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class bulletController : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class bulletController : MonoBehaviour
         if (collision.gameObject.tag is "enemy")
         {
             collision.gameObject.GetComponent<enemyHealthManager>().HurtEnemy(damageToGive);
-            Destroy(gameObject);
+           Destroy(gameObject);
         }
     }
 }
