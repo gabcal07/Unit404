@@ -6,7 +6,7 @@ using Photon.Pun;
 public class CamOff : MonoBehaviour
 { 
     PhotonView view;
-    public Camera camera;
+    public Camera cameras;
 
 
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class CamOff : MonoBehaviour
         view = GetComponent<PhotonView>();
         if (!view.IsMine)
         {
-            camera.enabled = false;
+            cameras.enabled = false;
         }
 
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6963757203468360827}
   - component: {fileID: 6963757203471260763}
   - component: {fileID: 6963757203470261915}
+  - component: {fileID: 9164519089686022958}
   m_Layer: 0
   m_Name: Object18 1
   m_TagString: Untagged
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9164519089686022958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963757203468255323}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31346992, y: 2.7786665, z: 0.30872035}
+  m_Center: {x: 0.0007835216, y: 1.3825526, z: -0.033353206}
 --- !u!1 &7957939484399619531
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,8 +144,8 @@ Light:
   m_Color: {r: 0.83193606, g: 0.70888215, b: 0.8490566, a: 1}
   m_Intensity: 0.5
   m_Range: 20
-  m_SpotAngle: 104.1
-  m_InnerSpotAngle: 21.2
+  m_SpotAngle: 115
+  m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
