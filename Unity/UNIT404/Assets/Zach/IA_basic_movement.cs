@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class IA_Basic_movement : MonoBehaviour
+public class IA_basic_movement : MonoBehaviour
 {
 
     //public Transform playerTransform;

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5123534369970410746}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ControlPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2622560704211310281}
   - component: {fileID: 8709122952013560377}
   - component: {fileID: 7483730880300406445}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 5192229866309139218}
   targetOffset: {x: 0, y: 2, z: -3}
-  movementSpeed: 5
+  movementSpeed: 6
 --- !u!1001 &747990724669839568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,15 +154,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4787295703917142978, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4787295703917142978, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4787295703917142978, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4787295703917142978, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,6 +213,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4787295703917142980, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787295703917142980, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
@@ -220,6 +224,14 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 6639317221032206399, guid: 9bf002a81839f62428bca5741a16e781, type: 3}
+    - target: {fileID: 4787295703955865212, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787295703993200188, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5416231050373635613, guid: 560ea0a3404f8fb47b47710d22abf216, type: 3}
       propertyPath: cameras
       value: 
