@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b42c074d8fa51a4f9bedc7a510265e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 50
-  damageToGive: 50
-  maxProjectileDistance: 100
+  projectileSpeed: 20
+  damageToGive: 100
+  maxProjectileDistance: 20
 --- !u!65 &2571917176182550340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,8 +132,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 0}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
