@@ -18,10 +18,7 @@ public class SpawnPlayers : MonoBehaviour
     {
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        for (int i = 0; i< 20; i++) 
-        {
-            PhotonNetwork.Instantiate(ennemy.name, new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ)), Quaternion.identity); 
-        }
+       
     }
 
     // Update is called once per frame
