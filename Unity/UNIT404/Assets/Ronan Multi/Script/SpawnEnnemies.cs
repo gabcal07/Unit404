@@ -13,10 +13,11 @@ public class SpawnEnnemies: MonoBehaviour
     public float minZ;
     public float maxX;
     public float maxZ;
+    public int numberOfSpawn;
 
     void Start()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < numberOfSpawn; i++)
         {
             Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
             PhotonNetwork.Instantiate(ennemy.name, randomPosition, Quaternion.identity);

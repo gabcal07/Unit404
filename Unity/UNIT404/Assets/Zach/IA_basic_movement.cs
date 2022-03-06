@@ -41,8 +41,6 @@ public class IA_basic_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange,whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange,whatIsPlayer);
 
