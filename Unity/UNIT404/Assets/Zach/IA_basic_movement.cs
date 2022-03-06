@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class IA_Basic_movement : MonoBehaviour
+public class IA_basic_movement : MonoBehaviour
 {
 
     //public Transform playerTransform;
@@ -41,7 +41,6 @@ public class IA_Basic_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange,whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange,whatIsPlayer);
 

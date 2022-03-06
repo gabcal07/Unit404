@@ -30,7 +30,6 @@ public class MainMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && i!=0)
         {
             skyMode = !skyMode;
-            Debug.Log("switch cam Mode " + skyMode);
             FirstCam.gameObject.SetActive(!skyMode);
             SecondCam.gameObject.SetActive(skyMode);
 
@@ -42,7 +41,6 @@ public class MainMenu : MonoBehaviour
         if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape) && i ==0)
         {
             skyMode = !skyMode;
-            Debug.Log("switch cam Mode " + skyMode);
             FirstCam.gameObject.SetActive(!skyMode);
             SecondCam.gameObject.SetActive(skyMode);
             

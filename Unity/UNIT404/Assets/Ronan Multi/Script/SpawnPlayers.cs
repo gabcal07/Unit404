@@ -7,6 +7,7 @@ public class SpawnPlayers : MonoBehaviour
   
 {
     public GameObject playerPrefab;
+    public GameObject ennemy;
     // Start is called before the first frame update
     public float minX;
     public float minZ;
@@ -15,8 +16,10 @@ public class SpawnPlayers : MonoBehaviour
 
     void Start()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        
+            Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
+            PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+       
     }
 
     // Update is called once per frame
