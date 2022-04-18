@@ -814,6 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
+  dashCooldown: 10
+  dashIntensity: 30
   theGun: {fileID: 1727933661}
 --- !u!54 &1632170338
 Rigidbody:
