@@ -30,7 +30,7 @@ public class gunController : MonoBehaviour
         if (lastTimeShot + firingSpeed <= Time.time)
         {
             lastTimeShot = Time.time;
-            PhotonNetwork.Instantiate(projectilePrefab.name, firingPoint.position, firingPoint.rotation);
+            /*PhotonNetwork.*/Instantiate(projectilePrefab/*.name*/, firingPoint.position, firingPoint.rotation);
         }
     }
 }
