@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (view.IsMine)
-        // {
+        if (view.IsMine)
+        {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput * moveSpeed;
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         }
 
         HandleShootInput();
-        //}
+        }
     }
     private void FixedUpdate()
     {
