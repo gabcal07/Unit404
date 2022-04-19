@@ -38,7 +38,7 @@ public class bulletController : MonoBehaviour
         if (collision.gameObject.tag is "enemy")
         {
             collision.gameObject.GetComponent<enemyHealthManager>().HurtEnemy(damageToGive);
-           Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }

@@ -14,20 +14,20 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveVelocity;
     private Camera mainCamera;
     public gunController theGun;
-    PhotonView view;
+    //PhotonView view;
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
         mainCamera = FindObjectOfType<Camera>();
-        view = GetComponent<PhotonView>();
+        //view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine)
-        {
+        //if (view.IsMine)
+        //{
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput * moveSpeed;
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         }
 
         HandleShootInput();
-        }
+        //}
     }
     private void FixedUpdate()
     {
@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            gunController.Instance.Shoot();
+            //gunController.Instance.Shoot();
+
         }
 
     }

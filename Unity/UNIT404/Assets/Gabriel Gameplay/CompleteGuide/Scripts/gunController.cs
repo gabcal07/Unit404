@@ -10,16 +10,16 @@ public class gunController : MonoBehaviour
     [SerializeField] float firingSpeed;
     public static gunController Instance;
     private float lastTimeShot = 0f;
-    PhotonView view;
+    //PhotonView view;
    
     // Start is called before the first frame update
     void Awake()
     {
-        view = GetComponent<PhotonView>();
-        if (view.IsMine)
-        {
+        //view = GetComponent<PhotonView>();
+        //if (view.IsMine)
+        //{
             Instance = GetComponent<gunController>();
-        }
+        //}
      
     }
 
@@ -30,7 +30,7 @@ public class gunController : MonoBehaviour
         if (lastTimeShot + firingSpeed <= Time.time)
         {
             lastTimeShot = Time.time;
-            PhotonNetwork.Instantiate(projectilePrefab.name, firingPoint.position, firingPoint.rotation);
+            /*PhotonNetwork.*/Instantiate(projectilePrefab/*.name*/, firingPoint.position, firingPoint.rotation);
         }
     }
 }
