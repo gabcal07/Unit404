@@ -15,7 +15,7 @@ public class GunRayCast : MonoBehaviour
     private float nextTimeToFire = 0f; 
     void Update()
     {
-        Debug.DrawRay(firingPoint.transform.position, firingPoint.transform.forward, Color.cyan);
+
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / firerate;
