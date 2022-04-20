@@ -2047,8 +2047,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   range: 100
-  firerate: 8
+  firerate: 0.5
   impactForce: 0
+  maxAmmo: 30
+  reloadTime: 1
   firingPoint: {fileID: 628857965}
   muzzleFlash: {fileID: 1301016121}
   impactEffect: {fileID: 1301016118}
@@ -2071,8 +2073,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   range: 100
-  firerate: 5
+  firerate: 10
   impactForce: 0
+  maxAmmo: 30
+  reloadTime: 1
   firingPoint: {fileID: 1036102099}
   muzzleFlash: {fileID: 1965254919}
   impactEffect: {fileID: 1965254916}
@@ -2095,8 +2099,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   range: 100
-  firerate: 5
+  firerate: 1
   impactForce: 0
+  maxAmmo: 30
+  reloadTime: 1
   firingPoint: {fileID: 1791657240}
   muzzleFlash: {fileID: 893486232}
   impactEffect: {fileID: 893486229}
@@ -2119,8 +2125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  firerate: 4
+  firerate: 2
   impactForce: 0
+  maxAmmo: 30
+  reloadTime: 1
   firingPoint: {fileID: 103361090}
   muzzleFlash: {fileID: 2023821283}
   impactEffect: {fileID: 2023821280}
