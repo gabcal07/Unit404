@@ -57,7 +57,25 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 53cdf426450157e499338b1322cd2b60, type: 2}
     - target: {fileID: 919132149155446097, guid: 03181d22da2ac784883c0ed0a32caa97, type: 3}
       propertyPath: m_Name
-      value: vdcoefeva_LOD2
+      value: Arbre 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03181d22da2ac784883c0ed0a32caa97, type: 3}
+--- !u!1 &396281849589693050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 03181d22da2ac784883c0ed0a32caa97, type: 3}
+  m_PrefabInstance: {fileID: 702150255796766507}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2708268400391029925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396281849589693050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1957611, y: 2.0650172, z: 1.01922}
+  m_Center: {x: 0.21594708, y: 1.0251527, z: 0.0615291}

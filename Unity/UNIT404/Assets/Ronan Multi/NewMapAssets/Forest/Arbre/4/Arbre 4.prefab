@@ -57,7 +57,25 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 274b6cbf68b2a874a99221c2bf35d1db, type: 2}
     - target: {fileID: 919132149155446097, guid: 41641b1ea48980a43836949de9ffb23a, type: 3}
       propertyPath: m_Name
-      value: vdkkbcfqx_LOD0
+      value: Arbre 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41641b1ea48980a43836949de9ffb23a, type: 3}
+--- !u!1 &5374651573976626542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 41641b1ea48980a43836949de9ffb23a, type: 3}
+  m_PrefabInstance: {fileID: 5068784821465237567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3057348071843691305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374651573976626542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1620425, y: 0.5808048, z: 0.5619823}
+  m_Center: {x: -0.011825383, y: 0.27563202, z: -0.00476934}

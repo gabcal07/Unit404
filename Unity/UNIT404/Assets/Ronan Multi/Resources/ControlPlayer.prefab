@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1807010829683964483}
-  targetOffset: {x: 0, y: 4, z: -4}
+  targetOffset: {x: 0, y: 6, z: -6}
   movementSpeed: 6
 --- !u!1001 &8972149764873302324
 PrefabInstance:
@@ -140,9 +140,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5123534369970410746}
     m_Modifications:
+    - target: {fileID: 7318543364435479408, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: moveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318543364435479408, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: dashCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318543364435479408, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: dashIntensity
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479409, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_Name
       value: Player Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318543364435479411, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318543364435479411, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479415, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_RootOrder
@@ -150,15 +170,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479415, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479415, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479415, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479415, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_LocalPosition.x
