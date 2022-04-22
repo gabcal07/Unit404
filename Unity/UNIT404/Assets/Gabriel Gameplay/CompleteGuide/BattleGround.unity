@@ -1174,6 +1174,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 919132148692780657, guid: cca7789856031d74389298c248bc6422, type: 3}
+      propertyPath: isHeavy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132148692780657, guid: cca7789856031d74389298c248bc6422, type: 3}
+      propertyPath: explosionDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132148692780657, guid: cca7789856031d74389298c248bc6422, type: 3}
+      propertyPath: explosionRadius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318543364357281481, guid: cca7789856031d74389298c248bc6422, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7318543364435479409, guid: cca7789856031d74389298c248bc6422, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1221,6 +1237,14 @@ PrefabInstance:
     - target: {fileID: 7318543364435479415, guid: cca7789856031d74389298c248bc6422, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589086247361397112, guid: cca7789856031d74389298c248bc6422, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589086247975757886, guid: cca7789856031d74389298c248bc6422, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cca7789856031d74389298c248bc6422, type: 3}

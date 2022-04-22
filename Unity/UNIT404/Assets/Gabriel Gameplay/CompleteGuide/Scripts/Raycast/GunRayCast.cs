@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GunRayCast : MonoBehaviour
 {
+    public bool isHeavy;
+    public float explosionDamage;
+    public float explosionRadius;
     public float damage = 10f;
     public float range = 100f;
     public float firerate;
@@ -28,6 +31,15 @@ public class GunRayCast : MonoBehaviour
     private void OnEnable()
     {
         isReloading = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        RaycastHit hit;
+
+        if (Physics.Raycast(firingPoint.transform.position, firingPoint.transform.forward, out hit, range))
+            Gizmos.DrawWireSphere(hit.point, explosionRadius);
     }
     void Update()
     {
@@ -62,11 +74,29 @@ public class GunRayCast : MonoBehaviour
 
         if(Physics.Raycast(firingPoint.transform.position, firingPoint.transform.forward, out hit, range))
         {
-           
-            Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
+            if (isHeavy)
             {
-                target.TakeDamage(damage);
+                Target target = hit.transform.GetComponent<Target>();
+                if (target != null)
+                {
+                    Collider[] damaged = Physics.OverlapSphere(hit.point, explosionRadius);
+                    foreach (Collider collider in damaged)
+                    {
+                        Target target1 = collider.transform.GetComponent<Target>();
+                        if(target1 != null)
+                        {
+                            target1.TakeDamage(explosionDamage);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Target target = hit.transform.GetComponent<Target>();
+                if (target != null)
+                {
+                    target.TakeDamage(damage);
+                }
             }
 
             if (hit.rigidbody != null)
