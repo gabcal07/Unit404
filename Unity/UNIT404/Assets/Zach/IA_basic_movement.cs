@@ -28,7 +28,7 @@ public class IA_basic_movement : MonoBehaviour
 
 	private void Awake()
 	{
-		player = GameObject.Find("Player").transform;
+		player = GameObject.Find("Player Variant").transform;
 		agent = GetComponent<NavMeshAgent>();
 	}
 

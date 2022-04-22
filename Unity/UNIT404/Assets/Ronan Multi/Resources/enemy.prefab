@@ -109,12 +109,12 @@ GameObject:
   - component: {fileID: 5221275005688611339}
   - component: {fileID: 8330912465508016797}
   - component: {fileID: 8423239107833216410}
-  - component: {fileID: 7374964474067628201}
   - component: {fileID: 5995411685064075299}
   - component: {fileID: 6076430602720691238}
   - component: {fileID: -4285675334933172351}
   - component: {fileID: 779655953211032248}
   - component: {fileID: 7392601268377607651}
+  - component: {fileID: 2414357606517288290}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -203,20 +203,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7374964474067628201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7201761723785896208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e39551ba7609b649a95e652d116338f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 200
-  currentHealth: 0
 --- !u!114 &5995411685064075299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 0
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 3
@@ -338,6 +324,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2414357606517288290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201761723785896208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bd27ea069cee04686a700886c58fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200
 --- !u!1 &9027467990382680663
 GameObject:
   m_ObjectHideFlags: 0
