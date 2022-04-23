@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bd27ea069cee04686a700886c58fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UsingPhoton: 1
   health: 200
 --- !u!1 &9027467990382680663
 GameObject:

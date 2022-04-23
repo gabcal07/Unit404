@@ -2216,7 +2216,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6656, y: 1}
+    m_SensorSize: {x: 1.864, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3392,3 +3392,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createRoomInput: {fileID: 2028907379}
   joinInput: {fileID: 20999818}
+  playerPrefab: {fileID: 808131065833926267, guid: f9e0830c6b3dc4247bea0ae64ddabb65, type: 3}

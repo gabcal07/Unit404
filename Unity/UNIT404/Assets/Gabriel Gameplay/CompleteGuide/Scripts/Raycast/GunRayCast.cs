@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class GunRayCast : MonoBehaviour
 {
@@ -20,12 +21,17 @@ public class GunRayCast : MonoBehaviour
     public GameObject firingPoint;
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
+    PhotonView view;
 
     private float nextTimeToFire = 0f;
+
+    public bool UsingPhoton;
 
     private void Start()
     {
         currentAmmo = maxAmmo;
+        if (UsingPhoton) { view = this.gameObject.GetComponentInParent<PhotonView>(); }
+
     }
 
     private void OnEnable()
@@ -43,19 +49,44 @@ public class GunRayCast : MonoBehaviour
     }
     void Update()
     {
-        if (isReloading)
-            return;
+        if (UsingPhoton)
+        {
+            if (view!=null && view.IsMine)
+            {
+                if (isReloading) { return; }
+                  
 
-        if (currentAmmo <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
+                if (currentAmmo <= 0)
+                {
+                    StartCoroutine(Reload());
+                    return;
+                }
+                if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+                {
+                    nextTimeToFire = Time.time + 1f / firerate;
+                    Shoot();
+                }
+            }
         }
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        else
         {
-            nextTimeToFire = Time.time + 1f / firerate;
-            Shoot();
+            if (isReloading)
+            { 
+                return;
+
+            } 
+            if (currentAmmo <= 0)
+            {
+                StartCoroutine(Reload());
+                return;
+            }
+            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + 1f / firerate;
+                Shoot();
+            }
         }
+        
     }
 
     IEnumerator Reload()
@@ -100,10 +131,17 @@ public class GunRayCast : MonoBehaviour
             }
 
             if (hit.rigidbody != null)
+            {
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
+            }
 
-            GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(impactGO, 2f);
+            
+                GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGO, 2f);
+
+
+            
+            
         }
 
     }

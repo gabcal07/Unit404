@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Target : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Target : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+
         health -= amount;
         if (health <= 0f)
             Die();
@@ -15,6 +17,6 @@ public class Target : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 }
