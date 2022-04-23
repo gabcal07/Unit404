@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 20
-  damageToGive: 100
+  damageToGive: 20
   maxProjectileDistance: 20
 --- !u!65 &2571917176182550340
 BoxCollider:
@@ -130,7 +130,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 2
   observableSearch: 2
   ObservedComponents: []
   sceneViewId: 0

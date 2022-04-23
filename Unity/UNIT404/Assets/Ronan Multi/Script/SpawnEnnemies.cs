@@ -13,21 +13,26 @@ public class SpawnEnnemies: MonoBehaviour
     public float minZ;
     public float maxX;
     public float maxZ;
+    [Tooltip ("Number of spawn every 10 sec")]
     public int numberOfSpawn;
 
     void Start()
     {
-        for (int i = 0; i < numberOfSpawn; i++)
-        {
-            Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
-            PhotonNetwork.Instantiate(ennemy.name, randomPosition, Quaternion.identity);
-        }
+       
        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        int test = Random.Range(0, 600);
+        if(test==100)
+        {
+            for (int i = 0; i < numberOfSpawn; i++)
+            {
+                Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ));
+                PhotonNetwork.Instantiate(ennemy.name, randomPosition, Quaternion.identity);
+            }
+        }
     }
 }
