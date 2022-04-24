@@ -14,45 +14,60 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveVelocity;
     private Camera mainCamera;
     public gunController theGun;
-    //PhotonView view;
+    PhotonView view;
+    
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
         mainCamera = FindObjectOfType<Camera>();
-        //view = GetComponent<PhotonView>();
+        view = GetComponent<PhotonView>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (view.IsMine)
-        //{
-        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput * moveSpeed;
 
-        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLength;
-
-        if (groundPlane.Raycast(cameraRay, out rayLength))
+        if (view != null && view.IsMine)
         {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+            moveVelocity = moveInput * moveSpeed;
+            if (mainCamera != null)
+            {
+                Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+                Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+                float rayLength;
+
+                if (groundPlane.Raycast(cameraRay, out rayLength))
+                {
+                    Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+                    Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+                    transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+                }
+
+                HandleShootInput();
+
+            }
+
         }
-        
-        HandleShootInput();
-        //}
+        else
+        {
+            return;
+        }       
     }
     private void FixedUpdate()
     {
         myRigidBody.velocity = moveVelocity;
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextDash)
-        {
-            nextDash = Time.time + dashCooldown;
-            Dash();
-        }
+        if (view != null && view.IsMine)
+            {
+                if (Input.GetKey(KeyCode.Space) && Time.time > nextDash)
+                {
+                    nextDash = Time.time + dashCooldown;
+                    Dash();
+                }
+            }
+            
     }
 
     void HandleShootInput()
