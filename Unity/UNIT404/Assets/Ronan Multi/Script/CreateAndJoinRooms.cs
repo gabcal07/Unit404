@@ -38,4 +38,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         
     }
+    public void quitdefoula()
+    {
+        Application.Quit();
+    }
 }
