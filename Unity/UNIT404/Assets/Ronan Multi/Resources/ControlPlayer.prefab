@@ -232,6 +232,14 @@ PrefabInstance:
       propertyPath: isHeavy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4828039801231444041, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: explosionDamage
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828039801231444041, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: explosionRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5212965345714354900, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: ObservedComponents.Array.size
       value: 1

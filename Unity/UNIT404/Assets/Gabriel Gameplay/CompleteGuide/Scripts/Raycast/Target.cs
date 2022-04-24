@@ -23,10 +23,18 @@ public class Target : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        if (health > 0)
+        if (amount > health)
         {
             gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+            health -= amount;
+        }
+        else
+        {
+            health -= amount;
+            if (health > 0)
+            {
+                gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+            }
         }
           
     }
