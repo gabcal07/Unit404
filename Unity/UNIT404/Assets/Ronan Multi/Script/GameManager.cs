@@ -20,36 +20,59 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float maxZEnemy;
     [Tooltip("Number of spawn every 10 sec")]
     public int numberOfSpawn;
+    private bool IsSpawning;
+    public int AlreadySpawned;
+    public bool roundEndend;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Instance == null)
+        if (PManager.LocalPlayerInstance == null)
         {
             Vector3 randomPosition = new Vector3(Random.Range(5, 15), 0.2f, Random.Range(4, 20));
             PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
             Instance = this;
+            gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.MasterClient);
 
         }
+        IsSpawning = false;
     }
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        SpawnEnemies();
-    }
-    public void SpawnEnemies()
-    {
-        int test = Random.Range(0, 600);
-        if (test == 100)
-        {
-            for (int i = 0; i < numberOfSpawn; i++)
+        if (PhotonNetwork.IsMasterClient)
+        { 
+            if (!IsSpawning && !roundEndend)
             {
-                Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
-                PhotonNetwork.Instantiate(ennemy.name, randomPosition, Quaternion.identity);
+                IsSpawning = true;
+                StartCoroutine(SpawnEnemies());
+
+                for (int i = 0; i < numberOfSpawn; i++)
+                {
+                    Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
+                    GameObject en = PhotonNetwork.InstantiateRoomObject (ennemy.name, randomPosition, Quaternion.identity);
+                    AlreadySpawned += 1;
+                    en.transform.parent = this.gameObject.transform;
+                    en.GetComponent<Target>().spawner = this.gameObject;
+                }
             }
+            if (AlreadySpawned >= 100)
+            {
+                roundEndend = true;
+            }
+        
+
         }
+       
+
+        
+    }
+    IEnumerator SpawnEnemies()
+    {
+      yield return new WaitForSeconds(15f);
+      IsSpawning = false;
     }
     public void LeaveR()
     {
@@ -59,6 +82,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void Die(GameObject player)
     {
         player.SetActive(false);
+    }
+    public void Kill(GameObject en)
+    {
+        
+            if (en.GetComponent<Target>().health <= 0)
+            {
+                PhotonNetwork.Destroy(en);
+            }
+
     }
 }
 /*MissingReferenceException: The object of type 'PhotonView' has been destroyed but you are still trying to access it.

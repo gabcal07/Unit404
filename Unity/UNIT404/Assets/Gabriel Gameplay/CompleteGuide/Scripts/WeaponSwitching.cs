@@ -18,6 +18,10 @@ public class WeaponSwitching : MonoBehaviour
             {
             view.RPC("SelectWeapon", RpcTarget.All, selectedWeapon);
 
+            }
+        else
+        {
+            this.gameObject.GetComponent<WeaponSwitching>().enabled = false;
         }
 
     }

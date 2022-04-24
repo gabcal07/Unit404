@@ -17,6 +17,7 @@ public class PlayerUi : MonoBehaviour
     [Tooltip("UI Slider to display Player's Health")]
     [SerializeField]
     private Slider playerHealthSlider;
+    public TMP_Text NumEnnemiesText;
 
     #endregion
 
@@ -35,7 +36,11 @@ public class PlayerUi : MonoBehaviour
             {
                 playerHealthSlider.value = target.GetComponentInParent<PManager>().Health;
             }
-            
+            if (NumEnnemiesText != null)
+            {
+                NumEnnemiesText.text = "Number of Enemies: \n " + (GameObject.Find("GameManager").transform.childCount.ToString());
+            }
+
         }
         if (target == null)
             {

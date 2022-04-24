@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PManager : MonoBehaviour
+public class PManager : MonoBehaviourPunCallbacks
 {
     public int Health;
+    public static GameObject LocalPlayerInstance;
+    private void Awake()
+    {
+        if (photonView.IsMine)
+        {
+            LocalPlayerInstance = gameObject;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

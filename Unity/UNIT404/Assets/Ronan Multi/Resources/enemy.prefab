@@ -268,7 +268,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 2
-  OwnershipTransfer: 2
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 779655953211032248}
@@ -336,8 +336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bd27ea069cee04686a700886c58fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UsingPhoton: 1
-  health: 200
+  health: 100
+  spawner: {fileID: 0}
+  view: {fileID: 0}
+  obj: {fileID: 7201761723785896208}
 --- !u!1 &9027467990382680663
 GameObject:
   m_ObjectHideFlags: 0

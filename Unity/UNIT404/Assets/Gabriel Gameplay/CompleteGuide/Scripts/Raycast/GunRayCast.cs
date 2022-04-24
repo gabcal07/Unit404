@@ -29,8 +29,16 @@ public class GunRayCast : MonoBehaviour
 
     private void Start()
     {
-        currentAmmo = maxAmmo;
-        if (UsingPhoton) { view = this.gameObject.GetComponentInParent<PhotonView>(); }
+       
+        view = this.gameObject.GetComponentInParent<PhotonView>();
+        if (view.IsMine)
+        {
+            currentAmmo = maxAmmo;
+        }
+        else
+        {
+            this.gameObject.GetComponent<GunRayCast>().enabled = false;
+        }
 
     }
 

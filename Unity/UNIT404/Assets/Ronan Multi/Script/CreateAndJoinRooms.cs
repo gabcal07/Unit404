@@ -23,7 +23,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("MainMap2");
-        
         /*PhotonNetwork.NickName = "Player " + (PhotonNetwork.CountOfPlayersInRooms + 1).ToString();
         Debug.Log("Player " + (PhotonNetwork.CountOfPlayersInRooms + 1).ToString());*/
 
