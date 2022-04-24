@@ -9,6 +9,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public GameObject createRoomInput;
     public GameObject joinInput;
+    public GameObject playerPrefab;
     // Start is called before the first frame update
     public void CreateRoom()
     {
@@ -17,10 +18,15 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom("jeu");
+       
     }
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("MainMap");
+        PhotonNetwork.LoadLevel("MainMap2");
+        /*PhotonNetwork.NickName = "Player " + (PhotonNetwork.CountOfPlayersInRooms + 1).ToString();
+        Debug.Log("Player " + (PhotonNetwork.CountOfPlayersInRooms + 1).ToString());*/
+
+
     }
     void Start()
     {
