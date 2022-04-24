@@ -26,4 +26,9 @@ public class PManager : MonoBehaviourPunCallbacks
     {
         
     }
+    public void Leave()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel(0);
+    }
 }

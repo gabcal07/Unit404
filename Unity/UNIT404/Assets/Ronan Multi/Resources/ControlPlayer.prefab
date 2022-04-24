@@ -142,6 +142,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5123534369970410746}
     m_Modifications:
+    - target: {fileID: 1186335711664980138, guid: 330cca7600194c04fa33bed8146dbd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4762263630325724485}
+    - target: {fileID: 1186335711664980138, guid: 330cca7600194c04fa33bed8146dbd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186335711664980138, guid: 330cca7600194c04fa33bed8146dbd44, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4342733450993902315, guid: 330cca7600194c04fa33bed8146dbd44, type: 3}
       propertyPath: m_Name
       value: Pause
@@ -382,6 +394,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7318543364435479409, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
   m_PrefabInstance: {fileID: 6123880354527136383}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4762263630325724485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1651291878102335290, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+  m_PrefabInstance: {fileID: 6123880354527136383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561455424100974862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f02945b200e6941ac9d1957f30342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8529479457449069192 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2495742808622301431, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
@@ -421,11 +444,11 @@ PrefabInstance:
       objectReference: {fileID: 567048043447277787}
     - target: {fileID: 2920538983960511827, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 52
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 2920538983960511827, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 251
+      value: 263
       objectReference: {fileID: 0}
     - target: {fileID: 3164032333666193916, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_Maskable
@@ -490,6 +513,10 @@ PrefabInstance:
     - target: {fileID: 5083284588270044568, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948652499795389596, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6373366858189677078, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_AnchorMax.x
