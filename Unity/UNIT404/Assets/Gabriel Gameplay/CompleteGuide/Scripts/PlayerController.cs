@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myRigidBody;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
-    private Camera mainCamera;
+    public Camera mainCamera;
     public gunController theGun;
     PhotonView view;
     
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
-        mainCamera = FindObjectOfType<Camera>();
+        //mainCamera = FindObjectOfType<Camera>();
         view = GetComponent<PhotonView>();
         
     }

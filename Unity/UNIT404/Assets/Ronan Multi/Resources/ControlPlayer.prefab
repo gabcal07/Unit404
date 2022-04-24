@@ -261,6 +261,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9162366751628727238}
     - target: {fileID: 7318543364435479408, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2622560704211310281}
+    - target: {fileID: 7318543364435479408, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: dashCooldown
       value: 2
       objectReference: {fileID: 0}
