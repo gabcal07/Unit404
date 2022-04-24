@@ -408,8 +408,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 567048043447277787}
     - target: {fileID: 2920538983960511827, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920538983960511827, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 164
+      value: 251
       objectReference: {fileID: 0}
     - target: {fileID: 3164032333666193916, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
       propertyPath: m_Maskable
