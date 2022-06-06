@@ -18,6 +18,9 @@ public class PlayerUi : MonoBehaviour
     [SerializeField]
     private Slider playerHealthSlider;
     public TMP_Text NumEnnemiesText;
+    public TMP_Text hp;
+    public TMP_InputField namechanger;
+    
 
     #endregion
 
@@ -35,10 +38,20 @@ public class PlayerUi : MonoBehaviour
             if (playerHealthSlider != null)
             {
                 playerHealthSlider.value = target.GetComponentInParent<PManager>().Health;
+                hp.text = "PV: " + target.GetComponentInParent<PManager>().Health.ToString() + "/200";
             }
             if (NumEnnemiesText != null)
             {
                 NumEnnemiesText.text = "Number of Enemies: \n " + (GameObject.Find("GameManager").transform.childCount.ToString());
+            }
+            if (PhotonNetwork.LocalPlayer.NickName==null || PhotonNetwork.LocalPlayer.NickName == "")
+            {
+                playerNameText.text = "Select Nickname in pause menu";
+            }
+            else
+            {
+                playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
+
             }
 
         }
@@ -48,6 +61,12 @@ public class PlayerUi : MonoBehaviour
                 return;
             }
        
+    }
+
+    public void changeName()
+    {
+
+        PhotonNetwork.LocalPlayer.NickName = namechanger.text;
     }
 
     #endregion

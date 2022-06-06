@@ -6,6 +6,7 @@ using Photon.Pun;
 public class Target : MonoBehaviour
 {
     public float health = 50f;
+    public float maxHp= 50f;
     public GameObject spawner;
     public PhotonView view;
     public GameObject obj;
@@ -17,27 +18,43 @@ public class Target : MonoBehaviour
     }
     void Update()
     {
-        spawner.GetComponent<GameManager>().Kill(gameObject);
 
-            }
+    }
 
+  
     public void TakeDamage(float amount)
+    {
+        if (view != null)
+        {
+            view.RPC("TakeD", RpcTarget.All, amount);
+        }
+
+    }
+    [PunRPC]
+    public void TakeD(float amount)
     {
         if (amount > health)
         {
-            gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+            if (view != null)
+            {
+                gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
             health -= amount;
+            }
         }
         else
         {
             health -= amount;
             if (health > 0)
             {
-                gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+                if (view != null)
+                {
+                    gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+                }
             }
         }
-          
+        spawner.GetComponent<GameManager>().Kill(gameObject);
+
     }
 
-    
+
 }

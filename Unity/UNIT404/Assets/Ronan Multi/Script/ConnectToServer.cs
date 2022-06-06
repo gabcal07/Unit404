@@ -22,7 +22,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedLobby()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main MenuR");
     }
 
 }

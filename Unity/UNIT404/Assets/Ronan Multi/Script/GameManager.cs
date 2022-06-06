@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     private bool IsSpawning;
     public int AlreadySpawned;
     public bool roundEndend;
-
+    public int round = 1;
+    //[NumOfSpawn,NumSpawnEveryDelay, Life, Delay]
+    public float[,] eachRound = { { 25, 5, 50, 1 }, { 30, 10, 75, 2 }, { 50, 10, 100, 5 }, { 100, 20, 150, 7 }, { 200, 40, 200, 12 } };
     // Start is called before the first frame update
     void Start()
     {
@@ -49,18 +51,31 @@ public class GameManager : MonoBehaviourPunCallbacks
                 IsSpawning = true;
                 StartCoroutine(SpawnEnemies());
 
-                for (int i = 0; i < numberOfSpawn; i++)
+                for (int i = 0; i < eachRound[round-1,1]; i++)
                 {
                     Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
                     GameObject en = PhotonNetwork.InstantiateRoomObject (ennemy.name, randomPosition, Quaternion.identity);
+                    en.GetComponent<Target>().health = eachRound[round - 1, 2];
+                    en.GetComponent<Target>().maxHp = eachRound[round - 1, 2];
                     AlreadySpawned += 1;
                     en.transform.parent = this.gameObject.transform;
                     en.GetComponent<Target>().spawner = this.gameObject;
                 }
             }
-            if (AlreadySpawned >= 100)
+            if (AlreadySpawned >= eachRound[round-1,0])
             {
                 roundEndend = true;
+                if (this.gameObject.transform.childCount == 0)
+                {
+                    Debug.Log("Fin du round");
+                    round += 1;
+                    AlreadySpawned = 0;
+                    roundEndend = false;
+                    IsSpawning = true;
+                    StartCoroutine(BtwRound());
+
+                }
+               
             }
         
 
@@ -71,8 +86,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     IEnumerator SpawnEnemies()
     {
-      yield return new WaitForSeconds(15f);
+      yield return new WaitForSeconds(eachRound[round-1,3]);
       IsSpawning = false;
+    }
+    IEnumerator BtwRound()
+    {
+        yield return new WaitForSeconds(10f);
+        IsSpawning = false;
     }
     public void LeaveR()
     {
@@ -85,13 +105,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public void Kill(GameObject en)
     {
-        
+        if (en.GetComponent<PhotonView>() != null)
+        {
+
             if (en.GetComponent<Target>().health <= 0)
             {
                 PhotonNetwork.Destroy(en);
             }
+        }
 
     }
+
+ 
 }
 /*MissingReferenceException: The object of type 'PhotonView' has been destroyed but you are still trying to access it.
 Your script should either check if it is null or you should not destroy the object.
