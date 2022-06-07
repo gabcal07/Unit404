@@ -49,6 +49,7 @@ public class WeaponSwitching : MonoBehaviour
             {
                 Debug.Log(selectedWeapon);
                 view.RPC("SelectWeapon", RpcTarget.All, selectedWeapon);
+                this.gameObject.GetComponent<AudioSource>().Play();
                 Debug.Log(selectedWeapon);
             }
         } 

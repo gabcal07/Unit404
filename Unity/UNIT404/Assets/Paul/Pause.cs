@@ -9,6 +9,8 @@ public class Pause : MonoBehaviour
     public static bool IsGamePaused = false;
 
     [SerializeField] GameObject pauseMenu;
+    public GameObject player;
+    public GameObject weapons;
     
 
     // Update is called once per frame
@@ -30,11 +32,24 @@ public class Pause : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        player.GetComponent<PlayerController>().enabled = true;
+        weapons.GetComponent<WeaponSwitching>().enabled = true;
+        foreach (var x in weapons.GetComponentsInChildren<GunRayCast>())
+        {
+            x.enabled = true;
+        }
         IsGamePaused = false;
     }
     void PauseGame()
     {
         pauseMenu.SetActive(true);
+        player.GetComponent<PlayerController>().enabled = false;
+        weapons.GetComponent<WeaponSwitching>().enabled = false;
+        foreach ( var x in weapons.GetComponentsInChildren<GunRayCast>())
+        {
+            x.enabled = false;
+        }
+
         IsGamePaused = true;
 
     }

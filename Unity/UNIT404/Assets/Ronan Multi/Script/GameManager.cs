@@ -5,39 +5,49 @@ using Photon.Pun;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    //Prefabs
     public GameObject playerPrefab;
     public GameObject PlayerUiPrefab;
     public GameObject ennemy;
-    // Start is called before the first frame update
+    public GameObject Boss;
+    public static GameManager Instance;
+
+
+    //Position of Spawn
     public float minXPlayer;
     public float minZPlayer;
     public float maxXPlayer;
     public float maxZPlayer;
-    public static GameManager Instance;
     public float minXEnemy;
     public float minZEnemy;
     public float maxXEnemy;
     public float maxZEnemy;
+
+    //Spawn Datas
     [Tooltip("Number of spawn every 10 sec")]
     public int numberOfSpawn;
-    private bool IsSpawning;
+    private bool IsSpawning=true;
     public int AlreadySpawned;
     public bool roundEndend;
     public int round = 1;
+    private bool BossFight;
+
     //[NumOfSpawn,NumSpawnEveryDelay, Life, Delay]
-    public float[,] eachRound = { { 25, 5, 50, 1 }, { 30, 10, 75, 2 }, { 50, 10, 100, 5 }, { 100, 20, 150, 7 }, { 200, 40, 200, 12 } };
-    // Start is called before the first frame update
+    public float[,] eachRound = { { 25, 5, 50, 1 }, { 30, 10, 75, 2 }, { 50, 10, 100, 5 }, { 75, 20, 150, 7 }, { 100, 20, 200, 12 } };
+
+
+
     void Start()
     {
         if (PManager.LocalPlayerInstance == null)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(5, 15), 0.2f, Random.Range(4, 20));
+            Vector3 randomPosition = new Vector3(Random.Range(5, 15), 0f, Random.Range(4, 20));
             PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
             Instance = this;
             gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.MasterClient);
 
         }
-        IsSpawning = false;
+        StartCoroutine(WaitThenPlay());
     }
 
 
@@ -70,9 +80,19 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.Log("Fin du round");
                     round += 1;
                     AlreadySpawned = 0;
-                    roundEndend = false;
-                    IsSpawning = true;
-                    StartCoroutine(BtwRound());
+                    if (round != 5)
+                    {
+                        roundEndend = false;
+                        IsSpawning = true;
+                        StartCoroutine(BtwRound());
+                    }
+                    else
+                    {
+
+                        roundEndend = false;
+                        IsSpawning = true;
+                        StartCoroutine(SpawnBoss());
+                    }
 
                 }
                
@@ -84,6 +104,28 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         
     }
+    IEnumerator SpawnBoss()
+    {
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossSpawn;
+        this.gameObject.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(15f);
+        GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,10,49), Quaternion.identity);
+        Debug.Log(PhotonNetwork.PlayerList.Length);
+        boss.GetComponent<Target>().health = (float) (PhotonNetwork.PlayerList.Length * 1000);
+        GameObject.Find("Music").GetComponent<AudioSource>().Pause();
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossFight;
+        this.gameObject.GetComponent<AudioSource>().Play();
+
+    }
+    IEnumerator WaitThenPlay()
+    {
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().Prevent;
+        this.gameObject.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(10f);
+        GameObject.Find("Music").GetComponent<AudioSource>().Play();
+        IsSpawning = false;
+
+    }
     IEnumerator SpawnEnemies()
     {
       yield return new WaitForSeconds(eachRound[round-1,3]);
@@ -91,7 +133,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     IEnumerator BtwRound()
     {
+        Debug.Log("Started to wait");
         yield return new WaitForSeconds(10f);
+        Debug.Log("End of the wait");
+
+        this.gameObject.GetComponent<AudioSource>().clip= GameObject.Find("AudioManager").GetComponent<AudioManager>().BtwRound;
+        this.gameObject.GetComponent<AudioSource>().Play();
         IsSpawning = false;
     }
     public void LeaveR()

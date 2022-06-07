@@ -72,7 +72,8 @@ public class GunRayCast : MonoBehaviour
                 if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
                 {
                     nextTimeToFire = Time.time + 1f / firerate;
-                    Shoot();
+
+                    view.RPC("Shoot", RpcTarget.All);
                 }
             }
         }
@@ -91,7 +92,8 @@ public class GunRayCast : MonoBehaviour
             if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1f / firerate;
-                Shoot();
+                view.RPC("Shoot", RpcTarget.All);
+
             }
         }
         
@@ -105,10 +107,13 @@ public class GunRayCast : MonoBehaviour
         isReloading = false;
     }
 
+    [PunRPC]
+
     void Shoot()
     {
         currentAmmo--;
-        muzzleFlash.Play(); 
+        muzzleFlash.Play();
+        this.gameObject.GetComponent<AudioSource>().Play();
         RaycastHit hit;
 
         if(Physics.Raycast(firingPoint.transform.position, firingPoint.transform.forward, out hit, range))
