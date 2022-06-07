@@ -106,6 +106,7 @@ MonoBehaviour:
   moveSpeed: 7
   dashCooldown: 10
   dashIntensity: 30
+  mainCamera: {fileID: 0}
   theGun: {fileID: 0}
 --- !u!136 &7318543364435479410
 CapsuleCollider:
