@@ -15,14 +15,16 @@ public class PlayerController : MonoBehaviour
     public Camera mainCamera;
     public gunController theGun;
     PhotonView view;
-    
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
         //mainCamera = FindObjectOfType<Camera>();
         view = GetComponent<PhotonView>();
-        
+        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -61,7 +63,12 @@ public class PlayerController : MonoBehaviour
         myRigidBody.velocity = moveVelocity;
         if (view != null && view.IsMine)
             {
-                if (Input.GetKey(KeyCode.Space) && Time.time > nextDash)
+                float VelocityZ = Vector3.Dot(moveVelocity.normalized, transform.forward);
+                float VelocityX = Vector3.Dot(moveVelocity.normalized, transform.right);
+
+                animator.SetFloat("VelocityZ", VelocityZ, 0.005f, Time.deltaTime);
+                animator.SetFloat("VelocityX", VelocityX, 0.005f, Time.deltaTime);
+            if (Input.GetKey(KeyCode.Space) && Time.time > nextDash)
                 {
                     nextDash = Time.time + dashCooldown;
                     Dash();
