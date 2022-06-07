@@ -2284,6 +2284,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5123534369970410746}
     m_Modifications:
+    - target: {fileID: 221884904997852274, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: m_PositionModel.SynchronizeEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 221884904997852274, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+      propertyPath: m_RotationModel.SynchronizeEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 348049069568871763, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 16
@@ -2318,12 +2326,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4548334329395729186, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: ObservedComponents.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4548334329395729186, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: ObservedComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6334365212858015245}
     - target: {fileID: 4828039801231444041, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
       propertyPath: isHeavy
       value: 1
@@ -2454,7 +2462,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
-    - {fileID: 221884904997852274, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
 --- !u!114 &1389697759402212248 stripped
@@ -2494,7 +2501,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2997,6 +3004,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21f02945b200e6941ac9d1957f30342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6334365212858015245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 221884904997852274, guid: 7120670ac3db7254c885673558b1a8c4, type: 3}
+  m_PrefabInstance: {fileID: 6123880354527136383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561455423844261184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8529479457449069192 stripped

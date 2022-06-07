@@ -65,9 +65,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
                     GameObject en = PhotonNetwork.InstantiateRoomObject (ennemy.name, randomPosition, Quaternion.identity);
-                    en.GetComponent<Target>().health = eachRound[round - 1, 2];
-                    en.GetComponent<Target>().maxHp = eachRound[round - 1, 2];
-                    AlreadySpawned += 1;
+                    en.GetComponent<Target>().ChangeH1(eachRound[round - 1, 2]);
+                    this.GetComponent<PhotonView>().RPC("AlreadySpawn", RpcTarget.All, 1);
                     en.transform.parent = this.gameObject.transform;
                     en.GetComponent<Target>().spawner = this.gameObject;
                 }
@@ -78,8 +77,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 if (this.gameObject.transform.childCount == 0)
                 {
                     Debug.Log("Fin du round");
-                    round += 1;
-                    AlreadySpawned = 0;
+                    this.GetComponent<PhotonView>().RPC("changeRound", RpcTarget.All);
+                    this.GetComponent<PhotonView>().RPC("AlreadySpawn", RpcTarget.All,0);
+
                     if (round != 5)
                     {
                         roundEndend = false;
@@ -104,6 +104,23 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         
     }
+    [PunRPC]
+    public void changeRound()
+    {
+        round += 1;
+    }
+    [PunRPC]
+    public void AlreadySpawn(int y)
+    {
+        if (y == 0)
+        {
+            AlreadySpawned = 0;
+        }
+        else
+        {
+            AlreadySpawned += 1;
+        }
+    }
     IEnumerator SpawnBoss()
     {
         this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossSpawn;
@@ -111,7 +128,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(15f);
         GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,10,49), Quaternion.identity);
         Debug.Log(PhotonNetwork.PlayerList.Length);
-        boss.GetComponent<Target>().health = (float) (PhotonNetwork.PlayerList.Length * 1000);
+        boss.GetComponent<Target>().ChangeH1(PhotonNetwork.PlayerList.Length*1000);
         GameObject.Find("Music").GetComponent<AudioSource>().Pause();
         this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossFight;
         this.gameObject.GetComponent<AudioSource>().Play();

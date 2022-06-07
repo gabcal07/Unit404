@@ -45,6 +45,9 @@ MonoBehaviour:
   - modifPerc
   - changeHP
   - Shoot
+  - changeRound
+  - AlreadySpawn
+  - ChangeH
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

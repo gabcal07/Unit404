@@ -21,6 +21,17 @@ public class Target : MonoBehaviour
 
     }
 
+    [PunRPC]
+    public void ChangeH(float x)
+    {
+        this.health = x;
+    }
+
+    public void ChangeH1(float x)
+    {
+        this.gameObject.GetComponent<PhotonView>().RPC("ChangeH", RpcTarget.All, x);
+    }
+
   
     public void TakeDamage(float amount)
     {
