@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject ennemy;
     public GameObject Boss;
     public static GameManager Instance;
+    public Light sun;
 
 
     //Position of Spawn
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossSpawn;
         this.gameObject.GetComponent<AudioSource>().Play();
+        //sun.color = new Color(87, 87, 87);
         yield return new WaitForSeconds(15f);
         GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,10,49), Quaternion.identity);
         Debug.Log(PhotonNetwork.PlayerList.Length);
@@ -134,6 +136,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     IEnumerator BtwRound()
     {
         Debug.Log("Started to wait");
+        /*if (round == 2)
+        {
+            sun.color = new Color(255f, 214f, 134f);
+        }
+        if (round == 3)
+        {
+            sun.color = new Color(255f, 161f, 71f);
+        }*/
         yield return new WaitForSeconds(10f);
         Debug.Log("End of the wait");
 

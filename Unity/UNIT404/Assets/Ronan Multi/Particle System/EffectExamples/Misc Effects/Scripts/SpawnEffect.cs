@@ -35,6 +35,7 @@ public class SpawnEffect : MonoBehaviour {
         }
         else
         {
+            this.gameObject.SetActive(false);
             ps.Play();
             timer = 0;
         }
