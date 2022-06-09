@@ -13,16 +13,20 @@ public class SpawnEffect : MonoBehaviour {
     Renderer _renderer;
 
     int shaderProperty;
+    public GameObject player;
+    public GameObject weapon;
 
 	void Start ()
-    {
+    { 
+        player.GetComponent<PlayerController>().enabled = false;
+        weapon.GetComponent<WeaponSwitching>().enabled = false;
         shaderProperty = Shader.PropertyToID("_cutoff");
         _renderer = GetComponent<Renderer>();
         ps = GetComponentInChildren <ParticleSystem>();
 
         var main = ps.main;
         main.duration = spawnEffectTime;
-
+       
         ps.Play();
 
     }
@@ -36,6 +40,8 @@ public class SpawnEffect : MonoBehaviour {
         else
         {
             this.gameObject.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = true; 
+           weapon.GetComponent<WeaponSwitching>().enabled = true;
             ps.Play();
             timer = 0;
         }

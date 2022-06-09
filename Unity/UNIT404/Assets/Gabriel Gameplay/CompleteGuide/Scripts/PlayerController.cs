@@ -56,13 +56,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             return;
-        }       
+        }
+      
     }
     private void FixedUpdate()
     {
         myRigidBody.velocity = moveVelocity;
         if (view != null && view.IsMine)
-            {
+        {
                 float VelocityZ = Vector3.Dot(moveVelocity.normalized, transform.forward);
                 float VelocityX = Vector3.Dot(moveVelocity.normalized, transform.right);
 
@@ -73,8 +74,15 @@ public class PlayerController : MonoBehaviour
                     nextDash = Time.time + dashCooldown;
                     Dash();
                 }
+            float i = myRigidBody.velocity.y;
+            Debug.Log(i);
+            if (i < -0.1)
+            {
+            myRigidBody.AddForce(new Vector3(0, -100, 0), ForceMode.Force);
             }
-            
+        }
+        
+
     }
 
     void HandleShootInput()

@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip Ambiant;
     public AudioClip BossFight;
     public AudioClip Prevent;
+    public AudioClip tp;
     // Start is called before the first frame update
     void Start()
     {
