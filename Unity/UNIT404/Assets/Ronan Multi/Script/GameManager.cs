@@ -163,7 +163,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         }*/
         yield return new WaitForSeconds(10f);
         Debug.Log("End of the wait");
-
+        foreach (GameObject p in playerList)
+        {
+            p.GetComponentInChildren<PManager>().changeHealth(200);
+        }
         this.gameObject.GetComponent<AudioSource>().clip= GameObject.Find("AudioManager").GetComponent<AudioManager>().BtwRound;
         this.gameObject.GetComponent<AudioSource>().Play();
         IsSpawning = false;

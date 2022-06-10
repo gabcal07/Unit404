@@ -31,4 +31,14 @@ public class PManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel(0);
     }
+    public void changeHealth(int i)
+    {
+        this.gameObject.GetComponent<PhotonView>().RPC("regen", RpcTarget.AllViaServer, i);
+    }
+
+    [PunRPC]
+    void regen(int i)
+    {
+        this.Health = i;
+    }
 }

@@ -9122,8 +9122,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9254902, g: 0.8235294, b: 0.8235294, a: 1}
-  m_Intensity: 0.7
+  m_Color: {r: 0.9622642, g: 0.94864726, b: 0.94864726, a: 1}
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -20258,10 +20258,12 @@ MonoBehaviour:
   minZEnemy: 10
   maxXEnemy: 80
   maxZEnemy: 80
+  y: 0
   numberOfSpawn: 5
   AlreadySpawned: 0
   roundEndend: 0
   round: 1
+  playerList: []
 --- !u!4 &2768624838098910445
 Transform:
   m_ObjectHideFlags: 0

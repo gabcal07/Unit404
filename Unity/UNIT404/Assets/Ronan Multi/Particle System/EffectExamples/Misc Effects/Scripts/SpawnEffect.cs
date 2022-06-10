@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SpawnEffect : MonoBehaviour {
 
@@ -17,37 +18,42 @@ public class SpawnEffect : MonoBehaviour {
     public GameObject weapon;
 
 	void Start ()
-    { 
-        player.GetComponent<PlayerController>().enabled = false;
-        weapon.GetComponent<WeaponSwitching>().enabled = false;
-        shaderProperty = Shader.PropertyToID("_cutoff");
-        _renderer = GetComponent<Renderer>();
-        ps = GetComponentInChildren <ParticleSystem>();
+    {
+        if (player.GetComponent<PhotonView>().IsMine)
+        {
+            player.GetComponent<PlayerController>().enabled = false;
+            weapon.GetComponent<WeaponSwitching>().enabled = false;
+            shaderProperty = Shader.PropertyToID("_cutoff");
+            _renderer = GetComponent<Renderer>();
+            ps = GetComponentInChildren<ParticleSystem>();
 
-        var main = ps.main;
-        main.duration = spawnEffectTime;
-       
-        ps.Play();
+            var main = ps.main;
+            main.duration = spawnEffectTime;
+
+            ps.Play();
+        }
 
     }
 	
 	void Update ()
     {
-        if (timer < spawnEffectTime + pause)
+        if (player.GetComponent<PhotonView>().IsMine)
         {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            this.gameObject.SetActive(false);
-            player.GetComponent<PlayerController>().enabled = true; 
-           weapon.GetComponent<WeaponSwitching>().enabled = true;
-            ps.Play();
-            timer = 0;
-        }
+            if (timer < spawnEffectTime + pause)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+                player.GetComponent<PlayerController>().enabled = true;
+                weapon.GetComponent<WeaponSwitching>().enabled = true;
+                ps.Play();
+                timer = 0;
+            }
 
 
-        _renderer.material.SetFloat(shaderProperty, fadeIn.Evaluate( Mathf.InverseLerp(0, spawnEffectTime, timer)));
-        
+            _renderer.material.SetFloat(shaderProperty, fadeIn.Evaluate(Mathf.InverseLerp(0, spawnEffectTime, timer)));
+        }
     }
 }

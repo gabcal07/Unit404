@@ -5158,6 +5158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6818462006690225028}
   - component: {fileID: 17882347040702435}
+  - component: {fileID: 517916912471595975}
   m_Layer: 0
   m_Name: PLayerManager
   m_TagString: Untagged
@@ -5194,6 +5195,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1321708734165650135}
   explosion: {fileID: 5607873423481853529}
+  SpawnParticles: {fileID: 7232851053597370721}
+  Neige: 0
+--- !u!114 &517916912471595975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976598095944401258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1012200855764179637
 GameObject:
   m_ObjectHideFlags: 0
@@ -11409,10 +11434,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1321708734165948151}
   - component: {fileID: 1321708733783828850}
+  - component: {fileID: 3116215914073470497}
   - component: {fileID: 7244824948955392134}
   - component: {fileID: 2471347503241375917}
   - component: {fileID: 1814245270172123130}
   - component: {fileID: 2682149367654126875}
+  - component: {fileID: 509886671430223749}
   - component: {fileID: 2709096403738196122}
   - component: {fileID: 3481107908051198045}
   - component: {fileID: 4480079828982997892}
@@ -11468,6 +11495,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3116215914073470497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321708734165650135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daeb456d6b9204b448fcf960511b19a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1321708734165650135}
+  view: {fileID: 0}
 --- !u!54 &7244824948955392134
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11528,6 +11569,19 @@ MonoBehaviour:
   dashIntensity: 30
   mainCamera: {fileID: 2622560704211310281}
   theGun: {fileID: 0}
+--- !u!114 &509886671430223749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321708734165650135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe8eb87020e23343a6a5b46b9eb41c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI: {fileID: 1012200855764179637}
 --- !u!114 &2709096403738196122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13176,6 +13230,7 @@ GameObject:
   - component: {fileID: 6152702322414515732}
   - component: {fileID: 7255292892746557947}
   - component: {fileID: 6837480055476079228}
+  - component: {fileID: 3993893160932323956}
   m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -13234,7 +13289,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 3993893160932323956}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -13334,6 +13390,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3993893160932323956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510575599734828380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &1525980527228577810
 GameObject:
   m_ObjectHideFlags: 0
@@ -51512,7 +51601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7232851053597370721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.131944, y: -5.0613003, z: -7.6253614}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -61119,7 +61208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7547902574791768514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.131944, y: 6.0613003, z: 7.6253614}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -76420,7 +76509,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8604327560395803824}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
