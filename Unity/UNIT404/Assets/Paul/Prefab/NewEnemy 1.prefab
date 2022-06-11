@@ -574,6 +574,30 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 137042941272012008, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0342b7977380d34585adadbed2766fb, type: 2}
+    - target: {fileID: 137164770680338926, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0342b7977380d34585adadbed2766fb, type: 2}
+    - target: {fileID: 137481012333455026, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0342b7977380d34585adadbed2766fb, type: 2}
+    - target: {fileID: 137717473903895176, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0342b7977380d34585adadbed2766fb, type: 2}
+    - target: {fileID: 137810699320912996, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0342b7977380d34585adadbed2766fb, type: 2}
+    - target: {fileID: 137839363649147024, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0342b7977380d34585adadbed2766fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c266c61b42ce56a4ca7e9190ef1209e3, type: 3}
 --- !u!4 &2750772239336121260 stripped
@@ -717,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc978b1924da9d4aa62037965ec0867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 8659115052493165118}
   player: {fileID: 5123534369970410746, guid: 28645876018aceb4ba47e4c03c021c94, type: 3}
   whatIsGround:
     serializedVersion: 2

@@ -28,7 +28,7 @@ public class NewIA : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player F(Clone)").transform;
+        player = GameObject.Find("Player F").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
