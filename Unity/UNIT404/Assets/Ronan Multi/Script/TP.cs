@@ -20,9 +20,7 @@ public class TP : MonoBehaviour
     }
     public void tp()
     {   
-        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().tp;
-        this.gameObject.GetComponent<AudioSource>().mute = false;
-        this.gameObject.GetComponent<AudioSource>().Play();
+       
         StartCoroutine(wait());
         
     }

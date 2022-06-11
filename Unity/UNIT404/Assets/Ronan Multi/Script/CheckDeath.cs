@@ -34,15 +34,15 @@ public class CheckDeath : MonoBehaviour
         {
             foreach (GameObject p in manager.GetComponent<GameManager>().playerList)
             {
-                Debug.Log("Is dead:" + p.GetComponentInChildren<Leave>().dead);
+                //Debug.Log("Is dead:" + p.GetComponentInChildren<Leave>().dead);
                 if (!p.GetComponentInChildren<Leave>().dead)
                 {
-                    Debug.Log("CheackDeath: return false");
+                    //Debug.Log("CheackDeath: return false");
                     return false;
 
                 }
             }
-            Debug.Log("CheackDeath: return true");
+            //Debug.Log("CheackDeath: return true");
             return true;
         }
         return false;

@@ -12,6 +12,7 @@ public class GunRayCast : MonoBehaviour
     public float range = 100f;
     public float firerate;
     public float impactForce;
+    public GameObject reload;
 
     public int maxAmmo = 30;
     public int currentAmmo;
@@ -102,6 +103,7 @@ public class GunRayCast : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
+        reload.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
         isReloading = false;

@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
                     Dash();
                 }
             float i = myRigidBody.velocity.y;
-            Debug.Log(i);
+            //Debug.Log(i);
             if (i < -0.1)
             {
             myRigidBody.AddForce(new Vector3(0, -100, 0), ForceMode.Force);

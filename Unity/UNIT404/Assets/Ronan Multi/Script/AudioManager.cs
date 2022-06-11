@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip BossFight;
     public AudioClip Prevent;
     public AudioClip tp;
+    public AudioClip button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,10 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void buttonPress()
+    {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(button);
     }
 }

@@ -89,7 +89,7 @@ public class NewPlayerController : MonoBehaviour
 
         if (view != null && view.IsMine)
         {
-            Debug.Log(collisions);
+            //Debug.Log(collisions);
             if (collisions == 0) myRigidBody.AddForce(new Vector3(0, -75, 0), ForceMode.Force);
         }
     }

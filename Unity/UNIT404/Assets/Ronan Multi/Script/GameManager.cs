@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool BossFight;
     public bool BossSpawned;
     public List<GameObject> playerList;
+    public bool Desert;
 
     //[NumOfSpawn,NumSpawnEveryDelay, Life, Delay]
-    public float[,] eachRound = { { 1, 1, 50, 1 }, { 1, 1, 75, 2 }, { 1, 1, 100, 5 }, { 1, 1, 150, 7 }, { 1, 1, 200, 12 }};
-
+    public float[,] eachRound = { { 30, 30, 50, 1 }, { 1, 1, 75, 2 }, { 1, 1, 100, 5 }, { 1, 1, 150, 7 }, { 1, 1, 200, 12 }};
 
 
     void Start()
@@ -60,70 +60,170 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         if (PhotonNetwork.IsMasterClient)
-        { 
-            if (!IsSpawning && !roundEndend && !BossFight)
+        {
+            //Carte Neige
+            if (!Desert)
             {
-                IsSpawning = true;
-                StartCoroutine(SpawnEnemies());
 
-                for (int i = 0; i < eachRound[round-1,1]; i++)
+                if (!IsSpawning && !roundEndend && !BossFight)
                 {
-                    Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
-                    GameObject en = PhotonNetwork.InstantiateRoomObject (ennemy.name, randomPosition, Quaternion.identity);
-                    en.GetComponent<Target>().health = eachRound[round, 2];
-                    en.GetComponent<Target>().maxHp = eachRound[round, 2];
-                    AlreadySpawned += 1;
-                    en.transform.parent = this.gameObject.transform;
-                    en.GetComponent<Target>().spawner = this.gameObject;
-                }
-            }
-            if (BossFight || AlreadySpawned >= eachRound[round,0])
-            {
-                roundEndend = true;
-                if (this.gameObject.transform.childCount == 0)
-                {
-                    //Debug.Log("Fin du round");
-                    
-                    AlreadySpawned = 0;
-                    if (round == 4)
+                    IsSpawning = true;
+                    StartCoroutine(SpawnEnemies());
+
+                    for (int i = 0; i < eachRound[round - 1, 1]; i++)
                     {
-                        roundEndend = false;
-                        IsSpawning = true;
-                        BossFight = true;
-                        this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
+                        Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
+                        GameObject en = PhotonNetwork.InstantiateRoomObject(ennemy.name, randomPosition, Quaternion.identity);
+                        en.GetComponent<Target>().ChangeHealth(eachRound[round-1,2]);
 
-                        //round += 1;
-                        StartCoroutine(SpawnBoss());;
+                        AlreadySpawned += 1;
+                        en.transform.parent = this.gameObject.transform;
+                        en.GetComponent<Target>().spawner = this.gameObject;
                     }
-                    else
+                }
+                if (BossFight || AlreadySpawned >= eachRound[round, 0])
+                {
+                    roundEndend = true;
+                    if (this.gameObject.transform.childCount == 0)
                     {
-                        if (round != 5)
+                        //Debug.Log("Fin du round");
+
+                        AlreadySpawned = 0;
+                        if (round == 4)
                         {
                             roundEndend = false;
                             IsSpawning = true;
-                            //round += 1;
+                            BossFight = true;
                             this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
-                            StartCoroutine(BtwRound());
+
+                            //round += 1;
+                            Debug.Log("Boucle 1");
+                            StartCoroutine(SpawnBoss()); ;
+                        }
+                        else
+                        {
+                            if (round != 5)
+                            {
+                                roundEndend = false;
+                                IsSpawning = true;
+                                //round += 1;
+                                this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
+                                StartCoroutine(BtwRound());
+                            }
+                        }
+
+                    }
+                    if (BossFight && this.gameObject.transform.childCount == 0 && BossSpawned)
+                    {
+                        this.gameObject.GetComponent<AudioSource>().Pause();
+                        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().tp;
+                        this.gameObject.GetComponent<AudioSource>().Play();
+                        this.gameObject.GetComponent<TP>().tp();
+                    }
+
+                }
+            }
+
+
+
+            //Carte Desert
+            else
+            {
+                float[] next = SpawnDatas(round);
+                
+
+
+                if (!IsSpawning && !roundEndend && !BossFight)
+                {
+
+
+                    IsSpawning = true;
+                    StartCoroutine(SpawnEnemies());
+                    //[TotalEnemy, EnemyBySpawn, HP]
+                    if (AlreadySpawned + next[1] < next[0])
+                    {
+                        for (int i = 0; i < next[1]; i++)
+                        {
+                            Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
+                            GameObject en = PhotonNetwork.InstantiateRoomObject(ennemy.name, randomPosition, Quaternion.identity);
+                            en.GetComponent<Target>().ChangeHealth(next[2]);
+                            AlreadySpawned += 1;
+                            en.transform.parent = this.gameObject.transform;
+                            en.GetComponent<Target>().spawner = this.gameObject;
+                        }
+                    }
+                    else
+                    {
+                        float tospawn = next[0] - AlreadySpawned;
+                        for (int i = 0; i < tospawn; i++)
+                        {
+                            Vector3 randomPosition = new Vector3(Random.Range(minXEnemy, maxXEnemy), 0, Random.Range(minZEnemy, maxZEnemy));
+                            GameObject en = PhotonNetwork.InstantiateRoomObject(ennemy.name, randomPosition, Quaternion.identity);
+                            en.GetComponent<Target>().ChangeHealth(next[2]);
+                            AlreadySpawned += 1;
+                            en.transform.parent = this.gameObject.transform;
+                            en.GetComponent<Target>().spawner = this.gameObject;
                         }
                     }
 
                 }
-               
-            }
-            if (BossFight && this.gameObject.transform.childCount == 0 && BossSpawned)
-            {
-                this.gameObject.GetComponent<TP>().tp();
+                if (BossFight || AlreadySpawned >= next[0])
+                {
+                    roundEndend = true;
+                    if (this.gameObject.transform.childCount == 0)
+                    {
+                        //Debug.Log("Fin du round");
+
+                        AlreadySpawned = 0;
+                        if ((round) % 5 == 0)
+                        {
+                            roundEndend = false;
+                            IsSpawning = true;
+                            BossFight = true;
+                            this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
+
+                            //round += 1;
+                            Debug.Log("Boucle 1");
+                            StartCoroutine(SpawnBoss()); ;
+                        }
+                        else
+                        {
+                            if ((round-1)%5 != 0 || round==1)
+                            {
+                                Debug.Log("boucle 2");
+                                roundEndend = false;
+                                IsSpawning = true;
+                                //round += 1;
+                                this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
+                                StartCoroutine(BtwRound());
+                            }
+
+                        }
+
+                    }
+                    if (BossFight && BossSpawned && this.gameObject.transform.childCount == 0 )
+                    {
+                        this.gameObject.GetComponent<AudioSource>().Pause();
+                        GameObject.Find("Music").GetComponent<AudioSource>().Play();
+                        BossFight = false;
+                        BossSpawned = false;
+                        roundEndend = false;
+                        IsSpawning = true;
+                        //round += 1;
+                         this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
+                         StartCoroutine(BtwRound());
+
+                    }
+                }
             }
             checkPLayerList();
-        
-
         }
+
+
+    }
        
 
-        
-    }
-
-    [PunRPC]
+           [PunRPC]
     public void nextRound()
     {
         round = round + 1;
@@ -134,12 +234,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         this.gameObject.GetComponent<AudioSource>().Play();
         //sun.color = new Color(87, 87, 87);
         yield return new WaitForSeconds(15f);
-        GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,10,49), Quaternion.identity);
-        //Debug.Log(PhotonNetwork.PlayerList.Length);
-        //boss.GetComponent<Target>().health = (float) (PhotonNetwork.PlayerList.Length * 1000);
+        GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,1,49), Quaternion.identity);
+            //Debug.Log(PhotonNetwork.PlayerList.Length);
+        //boss.GetComponent<Target>().ChangeHealth(1000 + 200 * round);
         boss.transform.parent = this.gameObject.transform;
         boss.GetComponent<Target>().spawner = this.gameObject;
-        BossSpawned = true;
+        this.gameObject.GetComponent<PhotonView>().RPC("BossSp", RpcTarget.All);
         GameObject.Find("Music").GetComponent<AudioSource>().Pause();
         this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossFight;
         this.gameObject.GetComponent<AudioSource>().Play();
@@ -157,7 +257,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     IEnumerator SpawnEnemies()
     {
-      yield return new WaitForSeconds(eachRound[round-1,3]);
+      yield return new WaitForSeconds(5f);
       IsSpawning = false;
     }
     IEnumerator BtwRound()
@@ -215,6 +315,36 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
         }
+    }
+    //[TotalEnemy, EnemyBySpawn, HP]
+
+
+    public float[] SpawnDatas(int i)
+    {
+        
+        float NBofEn = (1.24273f * (Mathf.Pow(((float)i), 1.64606f)) + 15.5843f);
+        NBofEn = Mathf.Round(NBofEn);
+        float Spawn = NBofEn / 4;
+        if (i > 16)
+        {
+            
+            Spawn = Mathf.Round(Spawn);
+        }
+        else
+        {
+            Spawn = NBofEn / (Mathf.Sqrt(2) * Mathf.Sqrt(i));
+            Spawn = Mathf.Round(Spawn);
+        }
+        float HP= 1.04875f * (Mathf.Pow(((float) i), 1.71046f)) + 52.4791f;
+        HP = Mathf.Round(HP);
+        return new float[] {NBofEn, Spawn, HP};
+
+    }
+
+    [PunRPC]
+    public void BossSp()
+    {
+        BossSpawned = !BossSpawned;
     }
 
  

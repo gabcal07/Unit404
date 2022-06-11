@@ -64,7 +64,7 @@ public class PlayerUi : MonoBehaviour
             {
                 if (GameObject.Find("GameManager").GetComponent<GameManager>().BossSpawned)
                 {
-                    round.text = "ENNEMI DANGEREUX";
+                    round.text = "ATTENTION!";
                 }
                 else 
                 {

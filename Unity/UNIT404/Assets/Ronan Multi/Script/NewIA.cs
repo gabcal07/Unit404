@@ -47,7 +47,7 @@ public class NewIA : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer(player.gameObject);
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer(player.gameObject); 
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
         animator.SetFloat("Speed", agent.velocity.magnitude);
 

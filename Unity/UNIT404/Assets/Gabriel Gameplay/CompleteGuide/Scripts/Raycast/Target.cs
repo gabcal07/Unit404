@@ -56,5 +56,19 @@ public class Target : MonoBehaviour
 
     }
 
+    [PunRPC]
+    public void ChangeHealthRPC(float x)
+    {
+        health = x;
+    }
+
+    public void ChangeHealth(float x)
+    {
+        //view.RPC("ChangeHealthRPC", RpcTarget.AllViaServer, x);
+        health = x;
+    }
+
+
+
 
 }

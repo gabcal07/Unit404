@@ -1306,12 +1306,12 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 68
+  Priority: 1
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -9186,7 +9186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 44.927, y: -26.997, z: 4.071}
 --- !u!1001 &992697087
 PrefabInstance:
@@ -15731,7 +15731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17172,7 +17172,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &1846167176
 PrefabInstance:
@@ -18776,7 +18776,7 @@ Transform:
   - {fileID: 276653401}
   - {fileID: 594016082}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1977960668
 PrefabInstance:
@@ -20357,8 +20357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 808131065833926267, guid: 28645876018aceb4ba47e4c03c021c94, type: 3}
   PlayerUiPrefab: {fileID: 8830471064080673934, guid: 810d18649a9f67e47906b8e60a02dffe, type: 3}
-  ennemy: {fileID: 7201761723785896208, guid: d3eccab7507c31c49bd973023197d40d, type: 3}
-  Boss: {fileID: 3276653878145452050, guid: 089785b9fd5d3e946b29eaea3214c97f, type: 3}
+  ennemy: {fileID: 2586282104711855222, guid: 3f5b61bf9b8b8014986102cd8ef4c430, type: 3}
+  Boss: {fileID: 8085955614122707157, guid: 46c1bb06d5ce3524db71313c733385c6, type: 3}
   sun: {fileID: 982694183}
   minXPlayer: 5
   minZPlayer: 4
@@ -20376,6 +20376,7 @@ MonoBehaviour:
   BossFight: 0
   BossSpawned: 0
   playerList: []
+  Desert: 0
 --- !u!4 &2768624838098910445
 Transform:
   m_ObjectHideFlags: 0
@@ -20389,7 +20390,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2768624838098910699
 GameObject:
@@ -20521,7 +20522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6359668339212694234, guid: f58a460b83a4eb84789f9e66e424bc85, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6359668339212694234, guid: f58a460b83a4eb84789f9e66e424bc85, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20575,10 +20576,10 @@ PrefabInstance:
     - target: {fileID: 7742055644746518325, guid: 6e5969a1e7264f54fbe148ecbdfb39bf, type: 3}
       propertyPath: tp
       value: 
-      objectReference: {fileID: 8300000, guid: b2a6999ce01906840a36b95fe6be97f2, type: 3}
+      objectReference: {fileID: 8300000, guid: 47fc3567952ea714da062ef1067a5a0d, type: 3}
     - target: {fileID: 7742055644746518326, guid: 6e5969a1e7264f54fbe148ecbdfb39bf, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7742055644746518326, guid: 6e5969a1e7264f54fbe148ecbdfb39bf, type: 3}
       propertyPath: m_LocalPosition.x
