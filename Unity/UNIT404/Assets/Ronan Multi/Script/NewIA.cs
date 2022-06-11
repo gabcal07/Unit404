@@ -11,6 +11,8 @@ public class NewIA : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    Animator animator;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -34,6 +36,8 @@ public class NewIA : MonoBehaviour
     void Start()
     {
         InvokeRepeating("updateAggro", 1f, 3f);
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,6 +49,7 @@ public class NewIA : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer(player.gameObject);
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        animator.SetFloat("Speed", agent.velocity.magnitude);
 
     }
 
@@ -86,13 +91,21 @@ public class NewIA : MonoBehaviour
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
+        
 
         if (!alreadyAttacked)
         {
-
+            int rand = Random.Range(0, 2);
             //Code de l'attaque qu'on veut
-
-
+            if (rand == 0)
+            {
+                animator.SetBool("Punch", true);
+            }
+            else
+            {
+                animator.SetBool("Kick", true);
+            }
+            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -100,7 +113,10 @@ public class NewIA : MonoBehaviour
 
     private void ResetAttack()
     {
+        animator.SetBool("Punch", false);
+        animator.SetBool("Kick", false);
         alreadyAttacked = false;
+        
     }
 
     private void OnDrawGizmosSelected()
