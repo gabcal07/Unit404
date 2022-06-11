@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ronan Multi/Map/Main MenuR.unity
     guid: 2ca71ab2e4fcb2a44be862dfe59cf1cb
+  - enabled: 1
+    path: Assets/Ronan Multi/Map/Loader.unity
+    guid: c4483f2e728f8484088d947f08f001d1
   - enabled: 0
     path: Assets/Paul/Scene/Main Menu.unity
     guid: aacb9885f20d5874d9d5c8ab630556c6
