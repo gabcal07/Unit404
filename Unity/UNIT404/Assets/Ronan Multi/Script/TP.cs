@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class TP : MonoBehaviour
 {
@@ -18,15 +19,17 @@ public class TP : MonoBehaviour
         
     }
     public void tp()
-    {
+    {   
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().tp;
+        this.gameObject.GetComponent<AudioSource>().mute = false;
+        this.gameObject.GetComponent<AudioSource>().Play();
         StartCoroutine(wait());
         
     }
 
     IEnumerator wait()
     {
-        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().tp;
-        this.gameObject.GetComponent<AudioSource>().Play();
+        
         yield return new WaitForSeconds(5f);
         //foreach (GameObject p in this.gameObject.GetComponent<GameManager>().playerList)
         //{
@@ -36,7 +39,7 @@ public class TP : MonoBehaviour
        // }
         
         yield return new WaitForSeconds(3f);
-        
         PhotonNetwork.LoadLevel(Scene);
+        Debug.Log(PhotonNetwork.LevelLoadingProgress);
     }
 }

@@ -9,7 +9,9 @@ public class Leave : MonoBehaviour
     public GameObject explosion;
     public GameObject SpawnParticles;
     public bool Neige;
-    bool dead = false;
+    public bool dead = false;
+    public float SpawnTime = 5;
+    private bool launched = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +21,19 @@ public class Leave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<PManager>().Health <= 0 && !dead)
+        if (Player.GetComponent<PManager>().Health <= 0 && !dead && !launched)
         {
-            dead = true;
+            launched = !launched;
+            //Player.GetComponent<PhotonView>().RPC("deadOrNot", RpcTarget.All);
+            dead = !dead;
             PhotonNetwork.RunRpcCoroutines = true;
-            this.gameObject.GetComponent<PhotonView>().RPC("res", RpcTarget.All);
+            StartCoroutine(res());
         }
         
     }
     public void LeaveR()
     {
+        this.gameObject.GetComponentInParent<RemoveFromTheList>().remove();
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel(0);
     }
@@ -40,7 +45,7 @@ public class Leave : MonoBehaviour
         explosion.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSecondsRealtime(0.25f);
         Player.SetActive(false);        
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(SpawnTime);
         Player.transform.position = new Vector3(9, 0.2f, 33);
         Player.GetComponent<PManager>().changeHealth(200);
         SpawnParticles.transform.position = Player.transform.position;
@@ -49,7 +54,21 @@ public class Leave : MonoBehaviour
         SpawnParticles.GetComponentInChildren<ParticleSystem>().Play();
         yield return new WaitForSeconds(1f);
         Player.SetActive(true);
-        dead = false;
+        dead = !dead;
+        //Player.GetComponent<PhotonView>().RPC("deadOrNot", RpcTarget.All);
+        launched = !launched;
 
+    }
+
+    [PunRPC]
+    public void deadOrNot()
+    {
+        dead = !dead;
+    }
+
+    [PunRPC]
+    public void active(GameObject p, bool b)
+    {
+        p.SetActive(b);
     }
 }

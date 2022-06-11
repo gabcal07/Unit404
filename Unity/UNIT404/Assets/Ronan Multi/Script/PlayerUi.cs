@@ -20,7 +20,14 @@ public class PlayerUi : MonoBehaviour
     public TMP_Text NumEnnemiesText;
     public TMP_Text hp;
     public TMP_InputField namechanger;
-    
+    public TMP_Text round;
+    public GameObject weapon;
+    public TMP_Text Cmun;
+    public TMP_Text Mmun;
+    public TMP_Text equiped;
+
+
+
 
     #endregion
 
@@ -34,7 +41,7 @@ public class PlayerUi : MonoBehaviour
     void Update()
     {
         if (target != null)
-            { // Reflect the Player Health
+        { // Reflect the Player Health
             if (playerHealthSlider != null)
             {
                 playerHealthSlider.value = target.GetComponentInParent<PManager>().Health;
@@ -44,7 +51,7 @@ public class PlayerUi : MonoBehaviour
             {
                 NumEnnemiesText.text = "Number of Enemies: \n " + (GameObject.Find("GameManager").transform.childCount.ToString());
             }
-            if (PhotonNetwork.LocalPlayer.NickName==null || PhotonNetwork.LocalPlayer.NickName == "")
+            if (PhotonNetwork.LocalPlayer.NickName == null || PhotonNetwork.LocalPlayer.NickName == "")
             {
                 playerNameText.text = "Select Nickname in pause menu";
             }
@@ -53,13 +60,35 @@ public class PlayerUi : MonoBehaviour
                 playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
 
             }
+            if (round != null)
+            {
+                if (GameObject.Find("GameManager").GetComponent<GameManager>().BossSpawned)
+                {
+                    round.text = "ENNEMI DANGEREUX";
+                }
+                else 
+                {
+                    round.text = "Manche: " + GameObject.Find("GameManager").GetComponent<GameManager>().round.ToString(); 
+                }
+            }
 
+            if (weapon != null)
+            {
+                string amo = weapon.GetComponentInChildren<GunRayCast>().currentAmmo.ToString();
+                string maxAmo= weapon.GetComponentInChildren<GunRayCast>().maxAmmo.ToString();
+                Cmun.text = amo;
+                Mmun.text = maxAmo;
+                
+            } 
         }
-        if (target == null)
+
+
+            if (target == null)
             {
                 Destroy(this.gameObject);
                 return;
             }
+            
        
     }
 

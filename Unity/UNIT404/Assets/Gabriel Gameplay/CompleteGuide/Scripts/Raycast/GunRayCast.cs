@@ -14,7 +14,7 @@ public class GunRayCast : MonoBehaviour
     public float impactForce;
 
     public int maxAmmo = 30;
-    private int currentAmmo;
+    public int currentAmmo;
     public float reloadTime = 1;
     private bool isReloading = false;
 

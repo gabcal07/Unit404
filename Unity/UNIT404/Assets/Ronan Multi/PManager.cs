@@ -28,6 +28,7 @@ public class PManager : MonoBehaviourPunCallbacks
     }
     public void Leave()
     {
+        this.gameObject.GetComponentInParent<RemoveFromTheList>().remove();
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel(0);
     }

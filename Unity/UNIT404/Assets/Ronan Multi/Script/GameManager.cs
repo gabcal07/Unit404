@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int AlreadySpawned;
     public bool roundEndend;
     public int round = 0;
-    private bool BossFight;
-    private bool BossSpawned;
+    public bool BossFight;
+    public bool BossSpawned;
     public List<GameObject> playerList;
 
     //[NumOfSpawn,NumSpawnEveryDelay, Life, Delay]
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Vector3 randomPosition = new Vector3(Random.Range(minXPlayer, maxXPlayer), y, Random.Range(minZPlayer, maxZPlayer)) ;
             GameObject p= PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-            playerList.Add(p);
+            //playerList.Add(p);
             Instance = this;
             gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.MasterClient);
 
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 roundEndend = true;
                 if (this.gameObject.transform.childCount == 0)
                 {
-                    Debug.Log("Fin du round");
+                    //Debug.Log("Fin du round");
                     
                     AlreadySpawned = 0;
                     if (round == 4)
@@ -90,7 +90,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                         roundEndend = false;
                         IsSpawning = true;
                         BossFight = true;
-                        round += 1;
+                        this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
+
+                        //round += 1;
                         StartCoroutine(SpawnBoss());;
                     }
                     else
@@ -99,7 +101,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                         {
                             roundEndend = false;
                             IsSpawning = true;
-                            round += 1;
+                            //round += 1;
+                            this.gameObject.GetComponent<PhotonView>().RPC("nextRound", RpcTarget.All);
                             StartCoroutine(BtwRound());
                         }
                     }
@@ -111,12 +114,19 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 this.gameObject.GetComponent<TP>().tp();
             }
+            checkPLayerList();
         
 
         }
        
 
         
+    }
+
+    [PunRPC]
+    public void nextRound()
+    {
+        round = round + 1;
     }
     IEnumerator SpawnBoss()
     {
@@ -152,7 +162,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     IEnumerator BtwRound()
     {
-        Debug.Log("Started to wait");
+        //Debug.Log("Started to wait");
         /*if (round == 2)
         {
             sun.color = new Color(255f, 214f, 134f);
@@ -162,7 +172,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             sun.color = new Color(255f, 161f, 71f);
         }*/
         yield return new WaitForSeconds(10f);
-        Debug.Log("End of the wait");
+        //Debug.Log("End of the wait");
         foreach (GameObject p in playerList)
         {
             p.GetComponentInChildren<PManager>().changeHealth(200);
@@ -191,6 +201,20 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
+    }
+
+    public void checkPLayerList()
+    {
+        if (PhotonNetwork.PlayerList.Length != playerList.Count)
+        {
+            foreach (GameObject g in playerList)
+            {
+                if (g.transform.childCount < 7)
+                {
+                    playerList.Remove(g);
+                }
+            }
+        }
     }
 
  
