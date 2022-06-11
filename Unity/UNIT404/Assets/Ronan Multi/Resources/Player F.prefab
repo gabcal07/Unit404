@@ -11434,6 +11434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321708734165948151}
   - component: {fileID: 1321708733783828850}
+  - component: {fileID: 5351127300757375600}
   - component: {fileID: 3116215914073470497}
   - component: {fileID: 7244824948955392134}
   - component: {fileID: 2471347503241375917}
@@ -11495,6 +11496,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5351127300757375600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321708734165650135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da158b5d17715064d9a94ce1eae7c0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  dashCooldown: 2
+  dashIntensity: 30
+  mainCamera: {fileID: 2622560704211310281}
+  theGun: {fileID: 0}
 --- !u!114 &3116215914073470497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11559,7 +11577,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321708734165650135}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35a91cbe4e68d714781f26bb6e528fea, type: 3}
   m_Name: 
