@@ -33,11 +33,19 @@ public class TP : MonoBehaviour
         //{
 
 
-          //  p.<SpawnEffect>().enabled = true;
-       // }
-        
+        //  p.<SpawnEffect>().enabled = true;
+        // }
+
+        //PhotonNetwork.AutomaticallySyncScene = true;
         yield return new WaitForSeconds(3f);
-        PhotonNetwork.LoadLevel(Scene);
+        this.gameObject.GetComponent<PhotonView>().RPC("t", RpcTarget.All);
         Debug.Log(PhotonNetwork.LevelLoadingProgress);
+    }
+
+    [PunRPC]
+
+    public void t()
+    {
+        PhotonNetwork.LoadLevel(Scene);
     }
 }

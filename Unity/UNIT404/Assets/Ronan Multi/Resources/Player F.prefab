@@ -5492,12 +5492,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa71487df85b75459d1ceb7a0a9c39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BtwRound: {fileID: 0}
-  BossSpawn: {fileID: 0}
+  BtwRound: {fileID: 8300000, guid: 1fc491c92eecd72498ca6336440ad5ff, type: 3}
+  BossSpawn: {fileID: 8300000, guid: 18ce583aef3300448b83e147b04893ae, type: 3}
   Ambiant: {fileID: 0}
-  BossFight: {fileID: 0}
-  Prevent: {fileID: 0}
-  tp: {fileID: 0}
+  BossFight: {fileID: 8300000, guid: 1e0ebad1271763a4c862cd61c3aa02c4, type: 3}
+  Prevent: {fileID: 8300000, guid: 9d1ed1a1ebf5914439b6f53d35176791, type: 3}
+  tp: {fileID: 8300000, guid: 47fc3567952ea714da062ef1067a5a0d, type: 3}
   button: {fileID: 8300000, guid: b2a6999ce01906840a36b95fe6be97f2, type: 3}
   damage: {fileID: 8300000, guid: 9e81417f464ff2a4aa8d752f3ccbfd82, type: 3}
   death: {fileID: 8300000, guid: aef7a67c56cb9b14790074fe7af174b9, type: 3}
