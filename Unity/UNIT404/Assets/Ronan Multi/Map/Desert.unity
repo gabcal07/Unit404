@@ -3363,7 +3363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 858d5f28fa73932479b115c1d7836c0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.844137
+      value: 25.64
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 858d5f28fa73932479b115c1d7836c0b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6346,7 +6346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7383261822239576896, guid: d0ea8c6fb7a6e8c4db932d28a795805a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.242577
+      value: 38.53
       objectReference: {fileID: 0}
     - target: {fileID: 7383261822239576896, guid: d0ea8c6fb7a6e8c4db932d28a795805a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7378,6 +7378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  Score: 0
+  "MancheSurv\xE9cues": 0
+  "ennemisTu\xE9s": 0
+  InCalcul: 0
 --- !u!4 &1663366257
 Transform:
   m_ObjectHideFlags: 0

@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         this.gameObject.GetComponent<AudioSource>().Play();
         //sun.color = new Color(87, 87, 87);
         yield return new WaitForSeconds(15f);
-        GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,1,49), Quaternion.identity);
+        GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(33,1,81), Quaternion.identity);
             //Debug.Log(PhotonNetwork.PlayerList.Length);
         //boss.GetComponent<Target>().ChangeHealth(1000 + 200 * round);
         boss.transform.parent = this.gameObject.transform;
