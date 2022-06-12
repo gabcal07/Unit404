@@ -51,5 +51,7 @@ public class ScoreManager : MonoBehaviour
     public void LeaveR()
     {
         PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel(0);
+
     }
 }

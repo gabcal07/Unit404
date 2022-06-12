@@ -4,20 +4,42 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Photon.Pun;
 using UnityEngine.UI;
+using TMPro;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public GameObject createRoomInput;
     public GameObject joinInput;
     public GameObject playerPrefab;
+    public TMP_InputField input;
     // Start is called before the first frame update
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom("jeux");
+        if (input.text == null || input.text == "")
+        {
+            PhotonNetwork.CreateRoom("jeux");
+
+        }
+        else
+        {
+            PhotonNetwork.CreateRoom(input.text);
+        }
+        
+        
     }
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom("jeux");
+        if (input.text == null || input.text == "")
+        {
+            PhotonNetwork.JoinRoom("jeux");
+            
+        }
+        else
+        {
+            PhotonNetwork.JoinRoom(input.text);
+       
+        }
+
        
     }
     public override void OnJoinedRoom()

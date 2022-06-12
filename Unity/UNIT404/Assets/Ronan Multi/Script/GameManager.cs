@@ -117,12 +117,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     if (BossFight && this.gameObject.transform.childCount == 0 && BossSpawned)
                     {
                         this.gameObject.GetComponent<AudioSource>().Pause();
-                        //this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().tp;
-                        //this.gameObject.GetComponent<AudioSource>().Play();
-                        foreach (GameObject p in playerList)
-                        {
-                            p.transform.Find("PlayerManager").GetComponent<AudioSource>().PlayOneShot(p.transform.Find("PlayerManager").GetComponent<AudioManager>().tp);
-                        }
+                        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().tp;
+                        this.gameObject.GetComponent<AudioSource>().Play();  
                         this.gameObject.GetComponent<TP>().tp();
                     }
 
@@ -235,13 +231,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     IEnumerator SpawnBoss()
     {
-        //this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossSpawn;
-        //this.gameObject.GetComponent<AudioSource>().Play();
-        foreach (GameObject p in playerList) 
-        { 
-            p.transform.Find("PlayerManager").GetComponent<AudioSource>().PlayOneShot(p.transform.Find("PlayerManager").GetComponent<AudioManager>().BossSpawn); 
-        }
-
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossSpawn;
+        this.gameObject.GetComponent<AudioSource>().Play();
         //sun.color = new Color(87, 87, 87);
         yield return new WaitForSeconds(15f);
         GameObject boss=PhotonNetwork.InstantiateRoomObject(Boss.name, new Vector3(48,1,49), Quaternion.identity);
@@ -251,23 +242,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         boss.GetComponent<Target>().spawner = this.gameObject;
         this.gameObject.GetComponent<PhotonView>().RPC("BossSp", RpcTarget.All);
         GameObject.Find("Music").GetComponent<AudioSource>().Pause();
-        //this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossFight;
-        //this.gameObject.GetComponent<AudioSource>().Play();
-        foreach (GameObject p in playerList)
-        {
-            p.transform.Find("PlayerManager").GetComponent<AudioSource>().PlayOneShot(p.transform.Find("PlayerManager").GetComponent<AudioManager>().BossFight);
-        }
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().BossFight;
+        this.gameObject.GetComponent<AudioSource>().Play();
+        
 
 
     }
     IEnumerator WaitThenPlay()
     {
-        // this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().Prevent;
-        //this.gameObject.GetComponent<AudioSource>().Play();
-        foreach (GameObject p in playerList)
-        {
-            p.transform.Find("PlayerManager").GetComponent<AudioSource>().PlayOneShot(p.transform.Find("PlayerManager").GetComponent<AudioManager>().Prevent);
-        }
+        this.gameObject.GetComponent<AudioSource>().clip = GameObject.Find("AudioManager").GetComponent<AudioManager>().Prevent;
+        this.gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(10f);
         GameObject.Find("Music").GetComponent<AudioSource>().Play();
         IsSpawning = false;
@@ -295,12 +279,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             p.GetComponentInChildren<PManager>().changeHealth(200);
         }
-        //this.gameObject.GetComponent<AudioSource>().clip= GameObject.Find("AudioManager").GetComponent<AudioManager>().BtwRound;
-        // this.gameObject.GetComponent<AudioSource>().Play();
-        foreach (GameObject p in playerList)
-        {
-            p.transform.Find("PlayerManager").GetComponent<AudioSource>().PlayOneShot(p.transform.Find("PlayerManager").GetComponent<AudioManager>().BtwRound);
-        }
+        this.gameObject.GetComponent<AudioSource>().clip= GameObject.Find("AudioManager").GetComponent<AudioManager>().BtwRound;
+        this.gameObject.GetComponent<AudioSource>().Play();
         IsSpawning = false;
     }
     public void LeaveR()
