@@ -66,7 +66,7 @@ public class GunRayCast : MonoBehaviour
                 if (isReloading) { return; }
 
 
-                if (currentAmmo <= 0)
+                if (currentAmmo <= 0 || Input.GetKey(KeyCode.R))
                 {
                     StartCoroutine(Reload());
                     return;
