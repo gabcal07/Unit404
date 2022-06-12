@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip button;
     public AudioClip damage;
     public AudioClip death;
+    public AudioClip dash;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +29,9 @@ public class AudioManager : MonoBehaviour
     public void buttonPress()
     {
         this.gameObject.GetComponent<AudioSource>().PlayOneShot(button);
+    }
+    public void dashing()
+    {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(dash);
     }
 }

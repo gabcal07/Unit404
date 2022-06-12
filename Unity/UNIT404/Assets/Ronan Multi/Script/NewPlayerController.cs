@@ -18,6 +18,7 @@ public class NewPlayerController : MonoBehaviour
     Animator animator;
     private bool isColliding;
     private int collisions = 0;
+    public GameObject PlayerM;
 
     // Start is called before the first frame update
     void Start()
@@ -61,12 +62,18 @@ public class NewPlayerController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        collisions++;
+        if (view != null && view.IsMine)
+        {
+            collisions++;
+        }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        collisions--;
+        if (view != null && view.IsMine)
+        {
+            collisions--;
+        }
     }
 
     private void FixedUpdate()
@@ -108,6 +115,7 @@ public class NewPlayerController : MonoBehaviour
 
     void Dash()
     {
+        PlayerM.GetComponent<AudioManager>().dashing();
         myRigidBody.AddForce(myRigidBody.velocity * dashIntensity, ForceMode.Impulse);
     }
 }

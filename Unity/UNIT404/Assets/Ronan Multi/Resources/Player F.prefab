@@ -5784,6 +5784,7 @@ MonoBehaviour:
   button: {fileID: 8300000, guid: b2a6999ce01906840a36b95fe6be97f2, type: 3}
   damage: {fileID: 8300000, guid: 9e81417f464ff2a4aa8d752f3ccbfd82, type: 3}
   death: {fileID: 8300000, guid: aef7a67c56cb9b14790074fe7af174b9, type: 3}
+  dash: {fileID: 8300000, guid: f9213553222bb1d46884841b022f8dfc, type: 3}
 --- !u!1 &1012200855764179637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7191,6 +7192,7 @@ MonoBehaviour:
   dashIntensity: 30
   mainCamera: {fileID: 2622560704211310281}
   theGun: {fileID: 0}
+  PlayerM: {fileID: 976598095944401258}
 --- !u!114 &3116215914073470497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40758,7 +40760,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4704498919980189467}
   serializedVersion: 8
-  lengthInSec: 0.05
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -72084,7 +72086,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7555179196200884845}
   serializedVersion: 8
-  lengthInSec: 0.05
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
