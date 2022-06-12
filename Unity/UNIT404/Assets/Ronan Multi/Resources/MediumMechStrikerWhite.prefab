@@ -1360,6 +1360,7 @@ GameObject:
   - component: {fileID: 4335054293707248122}
   - component: {fileID: 4138940846364532818}
   - component: {fileID: 120778255656823323}
+  - component: {fileID: 8296220726145247511}
   m_Layer: 0
   m_Name: MediumMechStrikerWhite
   m_TagString: Untagged
@@ -1475,11 +1476,14 @@ MonoBehaviour:
     m_Bits: 8
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
+  BaseDamage: 0
+  BaseDamageBoss: 30
   timeBetweenAttacks: 1.5
   sightRange: 500
   attackRange: 3
   playerInSightRange: 0
   playerInAttackRange: 0
+  Boss: 1
 --- !u!114 &2449410841796735258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1517,6 +1521,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 120778255656823323}
+  - {fileID: 8296220726145247511}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1575,6 +1580,36 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &8296220726145247511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085955614122707157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 1
+    Name: Blend
+  - Type: 1
+    SynchronizeType: 1
+    Name: Speed
+  - Type: 4
+    SynchronizeType: 1
+    Name: Kick
+  - Type: 4
+    SynchronizeType: 1
+    Name: Punch
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &8085961711898246125
 GameObject:
   m_ObjectHideFlags: 0

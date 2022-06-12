@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool Desert;
 
     //[NumOfSpawn,NumSpawnEveryDelay, Life, Delay]
-    public float[,] eachRound = { { 30, 30, 50, 1 }, { 1, 1, 75, 2 }, { 1, 1, 100, 5 }, { 1, 1, 150, 7 }, { 1, 1, 200, 12 }};
+    public float[,] eachRound = { { 30, 30, 50, 1 }, { 50, 25, 75, 2 }, { 70, 30, 100, 5 }, { 80, 40, 150, 6 }, { 1, 20, 200, 5 }};
 
 
     void Start()
@@ -77,11 +77,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                         en.GetComponent<Target>().ChangeHealth(eachRound[round-1,2]);
 
                         AlreadySpawned += 1;
+                        //roundEndend= AlreadySpawned>=eachRound[round]
                         en.transform.parent = this.gameObject.transform;
                         en.GetComponent<Target>().spawner = this.gameObject;
                     }
                 }
-                if (BossFight || AlreadySpawned >= eachRound[round, 0])
+                if (BossFight || AlreadySpawned >= eachRound[round-1, 0])
                 {
                     roundEndend = true;
                     if (this.gameObject.transform.childCount == 0)

@@ -17,6 +17,8 @@ public class NewIA : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    public int BaseDamage;
+    public int BaseDamageBoss;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -25,6 +27,7 @@ public class NewIA : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool Boss;
 
     private void Awake()
     {
@@ -99,11 +102,39 @@ public class NewIA : MonoBehaviour
             //Code de l'attaque qu'on veut
             if (rand == 0)
             {
+                
                 animator.SetBool("Punch", true);
+                if (playerInAttackRange)
+                {
+                    if (Boss)
+                    {
+                        StartCoroutine(w(2));
+                        player.GetComponentInChildren<PManager>().damage(BaseDamageBoss);
+
+                    }
+                    else
+                    {
+                        StartCoroutine(w(2));
+
+                        player.GetComponentInChildren<PManager>().damage(BaseDamage);
+                    }
+                }
             }
             else
             {
                 animator.SetBool("Kick", true);
+                if (Boss)
+                {
+                    StartCoroutine(w(2));
+
+                    player.GetComponentInChildren<PManager>().damage(BaseDamageBoss-3);
+                }
+                else
+                {
+                    StartCoroutine(w(2));
+
+                    player.GetComponentInChildren<PManager>().damage(BaseDamage+5);
+                }
             }
             
             alreadyAttacked = true;
@@ -155,5 +186,10 @@ public class NewIA : MonoBehaviour
     {
         player = FindClosestPlayer();
 
+    }
+
+    IEnumerator w(float i)
+    {
+        yield return new WaitForSeconds(i);
     }
 }

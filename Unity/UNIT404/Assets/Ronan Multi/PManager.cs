@@ -7,6 +7,8 @@ public class PManager : MonoBehaviourPunCallbacks
 {
     public int Health;
     public static GameObject LocalPlayerInstance;
+    public GameObject source;
+    
     private void Awake()
     {
         if (photonView.IsMine)
@@ -41,5 +43,25 @@ public class PManager : MonoBehaviourPunCallbacks
     void regen(int i)
     {
         this.Health = i;
+    }
+
+    public void damage(int i)
+    {
+        source.GetComponent<AudioSource>().PlayOneShot(source.GetComponent<AudioManager>().damage);
+        this.gameObject.GetComponent<PhotonView>().RPC("damageRPC", RpcTarget.AllViaServer, i);
+    }
+
+    [PunRPC]
+    public void damageRPC(int i)
+    {
+        if (Health - i < 0)
+        {
+            Health = 0;
+        }
+        else
+        {
+            Health -= i;
+
+        }
     }
 }

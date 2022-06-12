@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Ronan Multi/Map/Lobby.unity
     guid: a5a5cc93be3dd79459c27670a1d29e11
+  - enabled: 1
+    path: Assets/Ronan Multi/Map/ScoreScreen.unity
+    guid: 6185f02f94d455b468bda06ebad4ce1e
   m_configObjects: {}

@@ -5499,6 +5499,8 @@ MonoBehaviour:
   Prevent: {fileID: 0}
   tp: {fileID: 0}
   button: {fileID: 8300000, guid: b2a6999ce01906840a36b95fe6be97f2, type: 3}
+  damage: {fileID: 8300000, guid: 9e81417f464ff2a4aa8d752f3ccbfd82, type: 3}
+  death: {fileID: 8300000, guid: aef7a67c56cb9b14790074fe7af174b9, type: 3}
 --- !u!1 &1012200855764179637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7025,6 +7027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 200
+  source: {fileID: 976598095944401258}
 --- !u!114 &4480079828982997892
 MonoBehaviour:
   m_ObjectHideFlags: 0

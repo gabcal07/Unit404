@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip Prevent;
     public AudioClip tp;
     public AudioClip button;
-
+    public AudioClip damage;
+    public AudioClip death;
     // Start is called before the first frame update
     void Start()
     {

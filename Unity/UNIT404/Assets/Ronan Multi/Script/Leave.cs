@@ -12,6 +12,7 @@ public class Leave : MonoBehaviour
     public bool dead = false;
     public float SpawnTime = 5;
     private bool launched = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,8 @@ public class Leave : MonoBehaviour
     {
         if (Player.GetComponent<PManager>().Health <= 0 && !dead && !launched)
         {
+            this.gameObject.GetComponent<AudioSource>().PlayOneShot(this.gameObject.GetComponent<AudioManager>().damage);
+
             launched = !launched;
             //Player.GetComponent<PhotonView>().RPC("deadOrNot", RpcTarget.All);
             dead = !dead;
@@ -41,6 +44,7 @@ public class Leave : MonoBehaviour
     [PunRPC]
     public IEnumerator res()
     {
+
         explosion.transform.position =new Vector3 (Player.transform.position.x, Player.transform.position.y+1f, Player.transform.position.z);
         explosion.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSecondsRealtime(0.25f);
